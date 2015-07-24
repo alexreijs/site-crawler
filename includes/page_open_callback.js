@@ -6,7 +6,8 @@ module.exports = {
 function pageOpenCallback(status) {
 
 	if (status !== 'success') {
-		console.log('Request exitted with status: ' + status + '\n');
+		console.log('    Request exitted with status: ' + status);
+		handleURLs.logTimeElapsed(0);
 	} else {
 
 		// Set a timeout on the code in order to give the page a little bit more time to render javascript
@@ -19,9 +20,29 @@ function pageOpenCallback(status) {
 						
 			// Skip about:.... pages
 			if (location.protocol != 'about') {
-			
-
-			
+				
+				// Start looking for a content deeplink on the same hostname
+				if (configuration.getContentDeeplink && genericFunctions.parseURL(handleURLs.currentURL()).path == '/') {
+					var deepLink = page.evaluate(function() {
+						links = document.links;
+						
+						for (x in links) {
+							link = links[x];
+							dashCount = (link.pathname.match(/\-|_/g) || []).length;
+							slashCount = (link.pathname.match(/\//g) || []).length;
+							
+							if (window.location.hostname == link.hostname && dashCount >= 2 && slashCount >= 2 && link.href.length >= 15)
+								return link.href;
+						}
+						return false;
+					});
+										
+					if (deepLink) {
+						console.log('    Content deeplink found, adding it to URLs');
+						configuration.urls.unshift(deepLink);
+					}
+				}
+					
 				// Get banners
 				if (configuration.detectBanners) {
 					var banners = detectBanners.detectBanners(page);
@@ -91,9 +112,11 @@ function pageOpenCallback(status) {
 					if (typeof list.log != 'undefined' && list.list.length > 0)
 						console.log('    ' + list.log.replace('[x]', list.list.length));
 				}
+				
+				handleURLs.logTimeElapsed(onloadWait);
 			}
 		}, onloadWait);
 	}
 	
-	setTimeout(handleURLs.nextUrl, onloadWait);
+	setTimeout(function(){handleURLs.nextUrl(status == 'success');}, onloadWait);
 };

@@ -2,11 +2,13 @@ module.exports = {
 	handleUrl: handleUrl,
 	nextUrl: nextUrl,
 	start: start,
-	currentURL: currentURL
+	currentURL: currentURL,
+	logTimeElapsed: logTimeElapsed
 };
 
 var url;
 var urlTimeout;
+var urlTimeoutRetryCount = 0;
 
 function currentURL() {
 	return url;
@@ -31,20 +33,30 @@ function handleUrl(url){
 	
 	// Open current url
 	console.log(Date());
-	console.log('Openening address: ' + url);
+	console.log('Openening address: ' + url + (urlTimeoutRetryCount > 0 ? ' (retry count: ' + urlTimeoutRetryCount + ')' : ''));
 	page.open(url, pageOpenCallback.pageOpenCallback);
 	
 }
 
-function nextUrl(){
+function nextUrl(wasSuccess){
 	
 	// Set a timeout
 	window.clearTimeout(urlTimeout);
 	urlTimeout = window.setTimeout(timeout, timeoutMS);
-
-	// If we were already getting an URL, show elapsed time
-	if (typeof url != 'undefined')
-		console.log('Elapsed: ' + Math.round((Date.now() - onloadWait - timestamp) * 1000) / 1000000 + ' seconds\n');
+	
+	// Check if we need to to a retry
+	if (!wasSuccess && urlTimeoutRetryCount < urlTimeoutMaxRetries) {
+		configuration.urls.unshift(url);
+		urlTimeoutRetryCount++;
+	}
+	
+	// Reset retries
+	if (urlTimeoutRetryCount > urlTimeoutMaxRetries) {
+		configuration.urls.shift();
+		urlTimeoutRetryCount = 0;
+	}
+	if (wasSuccess)
+		urlTimeoutRetryCount = 0;
 
 	// Get next URL
 	url = configuration.urls.shift();
@@ -52,7 +64,7 @@ function nextUrl(){
 	// If no more URLs found, exit phantom
 	if(!url) {
 		console.log('Done, exiting phantomJS..\n');
-		phantom.exit(0);
+		phantom.exit();
 	}
 	
 	// Process URL
@@ -61,10 +73,15 @@ function nextUrl(){
 
 function start() {
 	console.log('\nStarting phantomJS, using configuration: ' + systemArguments.config + '\n');
-	nextUrl();
+	nextUrl(true);
 }
 
 function timeout() {
-	console.log('    Encountered timeout while trying to connect..');
-	nextUrl();
+	console.log('    Encountered timeout, ' + (urlTimeoutRetryCount + 1 > urlTimeoutMaxRetries ? 'reached max number of retries' : 'retrying'));
+	logTimeElapsed(0);
+	nextUrl(false);
+}
+
+function logTimeElapsed(timestampDelta) {
+	console.log('Elapsed: ' + Math.round((Date.now() - timestamp - timestampDelta) * 1000) / 1000000 + ' seconds\n');
 }
