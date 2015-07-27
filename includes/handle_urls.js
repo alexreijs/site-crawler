@@ -45,23 +45,24 @@ function nextUrl(wasSuccess){
 	urlTimeout = window.setTimeout(timeout, timeoutMS);
 	
 	// Check if we need to to a retry
-	if (!wasSuccess && urlTimeoutRetryCount < urlTimeoutMaxRetries) {
-		configuration.urls.unshift(url);
+	if (!wasSuccess) {
 		urlTimeoutRetryCount++;
+		
+		// Stay at current URL
+		if (urlTimeoutRetryCount <= urlTimeoutMaxRetries)
+			url = currentURL();
+		// Get next URL
+		else {
+			url = configuration.urls.shift();
+			urlTimeoutRetryCount = 0;
+		}
+	}
+	// Get next URL
+	else {
+		url = configuration.urls.shift();
+		urlTimeoutRetryCount = 0;
 	}
 	
-	// Reset retries
-	if (wasSuccess)
-		urlTimeoutRetryCount = 0;
-	else if (urlTimeoutRetryCount > urlTimeoutMaxRetries) {
-		configuration.urls.shift();
-		urlTimeoutRetryCount = 0;
-	}
-
-
-	// Get next URL
-	url = configuration.urls.shift();
-    
 	// If no more URLs found, exit phantom
 	if(!url) {
 		console.log('Done, exiting phantomJS..\n');
