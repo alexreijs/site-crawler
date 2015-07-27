@@ -51,12 +51,13 @@ function nextUrl(wasSuccess){
 	}
 	
 	// Reset retries
-	if (urlTimeoutRetryCount > urlTimeoutMaxRetries) {
+	if (wasSuccess)
+		urlTimeoutRetryCount = 0;
+	else if (urlTimeoutRetryCount > urlTimeoutMaxRetries) {
 		configuration.urls.shift();
 		urlTimeoutRetryCount = 0;
 	}
-	if (wasSuccess)
-		urlTimeoutRetryCount = 0;
+
 
 	// Get next URL
 	url = configuration.urls.shift();
