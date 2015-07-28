@@ -1,3 +1,0 @@
-Configuration;Timestamp;LocationProtocol;LocationHostname;LocationPathname;ScreenshotWidth;ScreenshotHeight;Filename
-test;1438002405705;http;www.wtf.nl;"/";640;1136;"www.wtf.nl%2F.png"
-test;1438002426352;http;www.wtf.nl;"/";640;1136;"www.wtf.nl%2F.png"
