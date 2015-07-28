@@ -1,0 +1,11 @@
+Configuration;Timestamp;LocationProtocol;LocationHostname;LocationPathname;BannerID;BannerParentID;BannerFilename;BannerDescription;BannerWidth;BannerHeight;BannerTop;BannerLeft
+native;1438070444523;http;www.viva.nl;"/lijf-lijn/jess-test-zelf-tandpasta-maken/";"VMspot_80178746_75463953";"";"VMspot_80178746_75463953";"Improve Digital";840;90;220;220
+native;1438070444523;http;www.viva.nl;"/lijf-lijn/jess-test-zelf-tandpasta-maken/";"VMspot_80178746_24512280";"";"VMspot_80178746_24512280";"Improve Digital";160;600;611;40
+native;1438070444523;http;www.viva.nl;"/lijf-lijn/jess-test-zelf-tandpasta-maken/";"VMspot_80178746_80154764";"";"VMspot_80178746_80154764";"Improve Digital";336;280;1232;699
+native;1438070444523;http;www.viva.nl;"/lijf-lijn/jess-test-zelf-tandpasta-maken/";"VMspot_80178746_17656928";"";"VMspot_80178746_17656928";"Improve Digital";840;22;3265;220
+native;1438070444523;http;www.viva.nl;"/lijf-lijn/jess-test-zelf-tandpasta-maken/";"189102020";"";"189102020";"Kalooga";840;517;3337;220
+native;1438070444523;http;www.viva.nl;"/lijf-lijn/jess-test-zelf-tandpasta-maken/";"plista_widget_belowArticle_55b736ae3df13";"";"plista_widget_belowArticle_55b736ae3df13";"Plista";840;389;3904;220
+native;1438070444523;http;www.viva.nl;"/lijf-lijn/jess-test-zelf-tandpasta-maken/";"google_ads_iframe_/4442/viva.nl/lijf_0";"google_ads_iframe_/4442/viva.nl/lijf_0__container__";"google_ads_iframe_%2F4442%2Fviva.nl%2Flijf_0";"Google Adsense";728;90;220;220
+native;1438070444523;http;www.viva.nl;"/lijf-lijn/jess-test-zelf-tandpasta-maken/";"google_ads_iframe_/4442/viva.nl/lijf_1";"google_ads_iframe_/4442/viva.nl/lijf_1__container__";"google_ads_iframe_%2F4442%2Fviva.nl%2Flijf_1";"Google Adsense";160;600;611;40
+native;1438070444523;http;www.viva.nl;"/lijf-lijn/jess-test-zelf-tandpasta-maken/";"google_ads_iframe_/4442/viva.nl/lijf_2";"google_ads_iframe_/4442/viva.nl/lijf_2__container__";"google_ads_iframe_%2F4442%2Fviva.nl%2Flijf_2";"Google Adsense";336;280;1232;699
+native;1438070444523;http;www.viva.nl;"/lijf-lijn/jess-test-zelf-tandpasta-maken/";"google_ads_iframe_/4442/viva.nl/lijf_3";"google_ads_iframe_/4442/viva.nl/lijf_3__container__";"google_ads_iframe_%2F4442%2Fviva.nl%2Flijf_3";"Google Adsense";3;3;3284;220

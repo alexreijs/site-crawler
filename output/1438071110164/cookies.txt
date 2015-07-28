@@ -1,0 +1,3 @@
+Configuration;Timestamp;LocationProtocol;LocationHostname;LocationPathname;CookieDomain;CookieName;CookieValue;CookieParty;CookiePartyCategory
+
+

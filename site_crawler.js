@@ -33,7 +33,7 @@ else if (typeof systemArguments.norendering == 'undefined')
 var onloadWait = 3500;
 var delimiter = ';';
 var timeoutMS = 15000;
-var urlTimeoutMaxRetries = 2;
+var urlTimeoutMaxRetries = 3;
 var outputDir = systemArguments.outputdir + '/' + Date.now();
 
 // Get includes

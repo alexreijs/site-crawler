@@ -1,0 +1,2 @@
+Configuration;Timestamp;LocationProtocol;LocationHostname;LocationPathname;ResourceID;ResourceContentType;ResourceURL;ResourceHost;ResourcePath;ResourceRequested;ResourceCompleted;ResourceFailed
+

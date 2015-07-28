@@ -1,0 +1,22 @@
+Configuration;Timestamp;LocationProtocol;LocationHostname;LocationPathname;BannerID;BannerParentID;BannerFilename;BannerDescription;BannerWidth;BannerHeight;BannerTop;BannerLeft
+native;1438071110197;http;www.libelle.nl;"/";"VMspot_59332360_79017424";"";"VMspot_59332360_79017424";"Improve Digital";728;90;210;276
+native;1438071110197;http;www.libelle.nl;"/";"VMspot_59332360_64435373";"";"VMspot_59332360_64435373";"Improve Digital";648;60;2032;136
+native;1438071110197;http;www.libelle.nl;"/";"VMspot_59332360_49661955";"";"VMspot_59332360_49661955";"Improve Digital";648;60;2962;136
+native;1438071110197;http;www.libelle.nl;"/";"VMspot_59332360_79651194";"";"VMspot_59332360_79651194";"Improve Digital";648;28;3456;136
+native;1438071110197;http;www.libelle.nl;"/";"VMspot_59332360_80805826";"";"VMspot_59332360_80805826";"Improve Digital";300;250;790;843
+native;1438071110197;http;www.libelle.nl;"/";"VMspot_59332360_31368514";"";"VMspot_59332360_31368514";"Improve Digital";300;250;3864;843
+native;1438071110197;http;www.libelle.nl;"/";"google_ads_iframe_/4442/p4442.libelle.nl/home_1";"google_ads_iframe_/4442/p4442.libelle.nl/home_1__container__";"google_ads_iframe_%2F4442%2Fp4442.libelle.nl%2Fhome_1";"Google Adsense";728;90;210;276
+native;1438071110197;http;www.libelle.nl;"/";"google_ads_iframe_/4442/p4442.libelle.nl/home_4";"google_ads_iframe_/4442/p4442.libelle.nl/home_4__container__";"google_ads_iframe_%2F4442%2Fp4442.libelle.nl%2Fhome_4";"Google Adsense";468;60;2032;226
+native;1438071110197;http;www.libelle.nl;"/";"google_ads_iframe_/4442/p4442.libelle.nl/home_5";"google_ads_iframe_/4442/p4442.libelle.nl/home_5__container__";"google_ads_iframe_%2F4442%2Fp4442.libelle.nl%2Fhome_5";"Google Adsense";468;60;2962;226
+native;1438071110197;http;www.libelle.nl;"/";"google_ads_iframe_/4442/p4442.libelle.nl/home_7";"google_ads_iframe_/4442/p4442.libelle.nl/home_7__container__";"google_ads_iframe_%2F4442%2Fp4442.libelle.nl%2Fhome_7";"Google Adsense";3;3;3481;136
+native;1438071110197;http;www.libelle.nl;"/";"google_ads_iframe_/4442/p4442.libelle.nl/home_9";"google_ads_iframe_/4442/p4442.libelle.nl/home_9__container__";"google_ads_iframe_%2F4442%2Fp4442.libelle.nl%2Fhome_9";"Google Adsense";300;250;790;843
+native;1438071110197;http;www.libelle.nl;"/";"google_ads_iframe_/4442/p4442.libelle.nl/home_11";"google_ads_iframe_/4442/p4442.libelle.nl/home_11__container__";"google_ads_iframe_%2F4442%2Fp4442.libelle.nl%2Fhome_11";"Google Adsense";300;250;3864;843
+native;1438071121815;http;www.libelle.nl;"/actueel/lekker-in-je-vel/vriendschappen";"VMspot_51649332_70943046";"";"VMspot_51649332_70943046";"Improve Digital";728;90;210;276
+native;1438071121815;http;www.libelle.nl;"/actueel/lekker-in-je-vel/vriendschappen";"2076651812";"";"2076651812";"Kalooga";648;457;2761;136
+native;1438071121815;http;www.libelle.nl;"/actueel/lekker-in-je-vel/vriendschappen";"VMspot_51649332_50109387";"";"VMspot_51649332_50109387";"Improve Digital";648;28;4531;136
+native;1438071121815;http;www.libelle.nl;"/actueel/lekker-in-je-vel/vriendschappen";"VMspot_51649332_417866";"";"VMspot_51649332_417866";"Improve Digital";300;250;790;843
+native;1438071121815;http;www.libelle.nl;"/actueel/lekker-in-je-vel/vriendschappen";"VMspot_51649332_17305312";"";"VMspot_51649332_17305312";"Improve Digital";300;250;3864;843
+native;1438071121815;http;www.libelle.nl;"/actueel/lekker-in-je-vel/vriendschappen";"google_ads_iframe_/4442/p4442.libelle.nl/actueel_1";"google_ads_iframe_/4442/p4442.libelle.nl/actueel_1__container__";"google_ads_iframe_%2F4442%2Fp4442.libelle.nl%2Factueel_1";"Google Adsense";728;90;210;276
+native;1438071121815;http;www.libelle.nl;"/actueel/lekker-in-je-vel/vriendschappen";"google_ads_iframe_/4442/p4442.libelle.nl/actueel_5";"google_ads_iframe_/4442/p4442.libelle.nl/actueel_5__container__";"google_ads_iframe_%2F4442%2Fp4442.libelle.nl%2Factueel_5";"Google Adsense";3;3;4556;136
+native;1438071121815;http;www.libelle.nl;"/actueel/lekker-in-je-vel/vriendschappen";"google_ads_iframe_/4442/p4442.libelle.nl/actueel_7";"google_ads_iframe_/4442/p4442.libelle.nl/actueel_7__container__";"google_ads_iframe_%2F4442%2Fp4442.libelle.nl%2Factueel_7";"Google Adsense";300;250;790;843
+native;1438071121815;http;www.libelle.nl;"/actueel/lekker-in-je-vel/vriendschappen";"google_ads_iframe_/4442/p4442.libelle.nl/actueel_9";"google_ads_iframe_/4442/p4442.libelle.nl/actueel_9__container__";"google_ads_iframe_%2F4442%2Fp4442.libelle.nl%2Factueel_9";"Google Adsense";300;250;3864;843

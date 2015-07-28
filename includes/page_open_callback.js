@@ -31,7 +31,7 @@ function pageOpenCallback(status) {
 							dashCount = (link.pathname.match(/\-|_/g) || []).length;
 							slashCount = (link.pathname.match(/\//g) || []).length;
 							
-							if (window.location.hostname == link.hostname && dashCount >= 2 && slashCount >= 2 && link.pathname.length >= 25)
+							if (window.location.hostname == link.hostname && dashCount >= 2 && slashCount >= 2 && link.pathname.length >= 35)
 								return link.href;
 						}
 						return false;
