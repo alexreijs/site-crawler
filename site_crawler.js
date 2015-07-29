@@ -40,6 +40,7 @@ var outputDir = systemArguments.outputdir + '/' + Date.now();
 var configuration = require('./configurations/' + systemArguments.config + '.js');
 var genericFunctions = require('./includes/generic_functions.js');
 var cookieParty = require('./includes/cookie_party.js');
+var resourceParty = require('./includes/resource_party.js');
 var handleURLs = require('./includes/handle_urls.js');
 var triggerFunctions = require('./includes/trigger_functions.js');
 var pageOpenCallback = require('./includes/page_open_callback.js');
@@ -86,7 +87,7 @@ var exportLists = {
 		"resources": {},
 		"list": [],
 		"log": "Tracked [x] resources",
-		"headers": ['Configuration', 'Timestamp', 'LocationProtocol', 'LocationHostname', 'LocationPathname', 'ResourceID', 'ResourceContentType', 'ResourceURL', 'ResourceHost', 'ResourcePath', 'ResourceRequested', 'ResourceCompleted', 'ResourceFailed']
+		"headers": ['Configuration', 'Timestamp', 'LocationProtocol', 'LocationHostname', 'LocationPathname', 'ResourceID', 'ResourceContentType', 'ResourceURL', 'ResourceHost', 'ResourcePath', 'ResourceParty', 'ResourceRequested', 'ResourceCompleted', 'ResourceFailed']
 	},
 	"screenshots": {
 	 	"list": [],

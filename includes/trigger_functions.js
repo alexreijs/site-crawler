@@ -41,6 +41,8 @@ function onResourceReceived(response) {
 	else if (/2[0-9]{2}/.test(response.status))	{		// Successful response
 		exportLists.resources.resources[response.id]['completed'] = response.time.getTime() - timestamp;
 		exportLists.resources.resources[response.id]['content_type'] = response['contentType'].split(delimiter)[0];
+		exportLists.resources.resources[response.id]['party'] = resourceParty.detectParty(response.url);
+		//console.log(JSON.stringify(response, undefined, 4));
 	}
 };
 

@@ -85,7 +85,7 @@ function pageOpenCallback(status) {
 						resource = exportLists.resources.resources[id];
 						exportLists.resources.list.push([
 							systemArguments.config, timestamp, location.protocol, location.host, genericFunctions.encloseQuotes(location.path),
-							id, genericFunctions.encloseQuotes(resource.content_type), genericFunctions.encloseQuotes(resource.url), genericFunctions.parseURL(resource.url).host, genericFunctions.encloseQuotes(genericFunctions.parseURL(resource.url).path), resource.requested, resource.completed, resource.failed
+							id, genericFunctions.encloseQuotes(resource.content_type), genericFunctions.encloseQuotes(resource.url), genericFunctions.parseURL(resource.url).host, genericFunctions.encloseQuotes(genericFunctions.parseURL(resource.url).path), resource.party, resource.requested, resource.completed, resource.failed
 						].join(delimiter));
 					}
 				}
