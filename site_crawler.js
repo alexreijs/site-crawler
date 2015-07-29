@@ -68,7 +68,8 @@ page.settings.userAgent = configuration.userAgent;
 
 // Hook callback triggers to page 
 for (trigger in triggerFunctions) {
-	page[trigger] = triggerFunctions[trigger];
+	if ((/Resource/.test(trigger) && configuration.trackResources) || !/Resource/.test(trigger))
+		page[trigger] = triggerFunctions[trigger];
 }
 
 // Make an object containing every list we are exporting
