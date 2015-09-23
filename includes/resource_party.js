@@ -5,7 +5,8 @@ module.exports = {
 // Create function which tries to identify the party of a specific script
 function detectParty(location) {
 	checks = [
-		{"value": location,		"regexp": "cts\.snmmd\.nl\/lib\/js\/advertising\.js", 					"party": "Adblock checker"}
+		{"value": location,		"regexp": "cts\.snmmd\.nl\/lib\/js\/advertising\.js", 					"party": "Adblock checker"},
+		{"value": location,		"regexp": ".*" + window.location.hostname + ".*\/consent\.js", 			"party": "Consent manager"}
 	];
 	
 	for (x in checks) {

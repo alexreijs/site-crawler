@@ -1,4 +1,5 @@
 module.exports = {
+	sanomaConsentCategories: [],
 	getContentDeeplink: false,
 	urls: ['http://www.autotrader.nl', 'http://www.flairathome.nl', 'http://www.goeievraag.nl', 'http://www.kieskeurig.nl', 'http://www.margriet.nl', 'http://www.nu.nl', 'http://www.startpagina.nl', 'http://www.viva.nl'],	
 	zoomFactor: 1,

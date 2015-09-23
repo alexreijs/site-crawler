@@ -1,4 +1,5 @@
 module.exports = {
+	sanomaConsentCategories: [],
 	getContentDeeplink: false,
 	//urls: ['http://www.wtf.nl'],	
 	zoomFactor: 1,

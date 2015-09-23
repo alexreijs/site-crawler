@@ -32,7 +32,7 @@ else if (typeof systemArguments.norendering == 'undefined')
 // Set settings
 var onloadWait = 3500;
 var delimiter = ';';
-var timeoutMS = 15000;
+var timeoutMS = 10000;
 var urlTimeoutMaxRetries = 3;
 var outputDir = systemArguments.outputdir + '/' + Date.now();
 
@@ -104,5 +104,5 @@ var exportLists = {
 // Start with first URL
 handleURLs.start();
 
-// cd C:\Users\A.Reijs\Desktop\phantomjs\scripts\site_crawler
+// cd C:\Users\A.Reijs\Repos\site-crawler\
 // phantomjs --ssl-protocol=any --ignore-ssl-errors=true .\site_crawler.js config=desktop outputdir=.\output

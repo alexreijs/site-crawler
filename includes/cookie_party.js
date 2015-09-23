@@ -90,6 +90,7 @@ function detectParty(location, cookie_site, cookie_name) {
 		{"value": cookie_name, 		"regexp": "^__gads", 				"party": "Google Adsense",				"type": "ads"},
 		{"value": cookie_name, 		"regexp": "^_vis_opt", 				"party": "Visual Website Optimiser",	"type": "stats"},
 		{"value": cookie_name, 		"regexp": "consentbarviewcount",	"party": "Sanoma Consent Manager",		"type": "functional"},
+		{"value": cookie_name, 		"regexp": "site_consent",			"party": "Sanoma Consent Manager",		"type": "functional"},
 		{"value": cookie_name, 		"regexp": "(session|sess|ss)-?id",	"party": "Site-own",					"type": "functional"},
 		{"value": location.host, 	"regexp": cookie_site, 				"party": "Site-own",					"type": ""},
 		{"value": cookie_site, 		"regexp": location.host, 			"party": "Site-own",					"type": ""}		
