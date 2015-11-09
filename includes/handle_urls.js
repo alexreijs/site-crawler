@@ -78,7 +78,7 @@ function nextUrl(wasSuccess){
 	
 	// If no more URLs found, exit phantom
 	if(!url) {
-		console.log('Done, exiting phantomJS..\n');
+		console.log('Done, exiting phantomJS..\n');		
 		phantom.exit();
 	}
 	

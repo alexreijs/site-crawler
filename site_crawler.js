@@ -32,7 +32,7 @@ else if (typeof systemArguments.norendering == 'undefined')
 // Set settings
 var onloadWait = 3500;
 var delimiter = ';';
-var timeoutMS = 10000;
+var timeoutMS = 5000;
 var urlTimeoutMaxRetries = 3;
 var outputDir = systemArguments.outputdir + '/' + Date.now();
 
@@ -47,10 +47,12 @@ var pageOpenCallback = require('./includes/page_open_callback.js');
 var detectBanners = require('./includes/detect_banners.js');
 
 
-// Get sanoma network URLs and load them as default if no urls defined in configuration
-var sanomaURLs = JSON.parse(fs.read('./sanoma_network.txt'))['urls'];
-if (typeof configuration.urls == 'undefined')
-	configuration.urls = sanomaURLs;
+// Check if URLs were found
+if (typeof configuration.urls == 'undefined' || configuration.urls.length == 0) {
+	console.log('No URLs were specified, aborting');
+	phantom.exit();
+}
+
 
 // Create outputDir structure
 if (!fs.isDirectory(outputDir)) {
