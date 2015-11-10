@@ -13,12 +13,15 @@ for (x in system.args) {
 		systemArguments[argument.split('=')[0]] = argument.split('=')[1];
 }
 
+// Check working directory
+fs.changeWorkingDirectory((typeof systemArguments.workingdir == 'undefined') ? '.' : systemArguments.workingdir);
+
 // Check for mandatory arguments
 if (typeof systemArguments.config == 'undefined') {
 	console.log('Please specify a configuration by using "config=xxx" as parameter');
 	phantom.exit();
 }
-else if (!fs.exists(systemArguments.config)) {
+else if (!fs.exists(fs.workingDirectory + '/configurations/' + systemArguments.config + '.js')) {
 	console.log('The configuration file you specified could not be found');
 	phantom.exit();
 }
@@ -37,14 +40,14 @@ var urlTimeoutMaxRetries = 3;
 var outputDir = systemArguments.outputdir + '/' + Date.now();
 
 // Get includes
-var configuration = require(systemArguments.config);
-var genericFunctions = require('./includes/generic_functions.js');
-var cookieParty = require('./includes/cookie_party.js');
-var resourceParty = require('./includes/resource_party.js');
-var handleURLs = require('./includes/handle_urls.js');
-var triggerFunctions = require('./includes/trigger_functions.js');
-var pageOpenCallback = require('./includes/page_open_callback.js');
-var detectBanners = require('./includes/detect_banners.js');
+var configuration = require(fs.workingDirectory + '/configurations/' + systemArguments.config + '.js');
+var genericFunctions = require(fs.workingDirectory + '/includes/generic_functions.js');
+var cookieParty = require(fs.workingDirectory + '/includes/cookie_party.js');
+var resourceParty = require(fs.workingDirectory + '/includes/resource_party.js');
+var handleURLs = require(fs.workingDirectory + '/includes/handle_urls.js');
+var triggerFunctions = require(fs.workingDirectory + '/includes/trigger_functions.js');
+var pageOpenCallback = require(fs.workingDirectory + '/includes/page_open_callback.js');
+var detectBanners = require(fs.workingDirectory + '/includes/detect_banners.js');
 
 
 // Check if URLs were found
