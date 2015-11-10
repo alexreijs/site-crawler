@@ -18,7 +18,7 @@ if (typeof systemArguments.config == 'undefined') {
 	console.log('Please specify a configuration by using "config=xxx" as parameter');
 	phantom.exit();
 }
-else if (!fs.exists('./configurations/' + systemArguments.config + '.js')) {
+else if (!fs.exists(systemArguments.config)) {
 	console.log('The configuration file you specified could not be found');
 	phantom.exit();
 }
@@ -37,7 +37,7 @@ var urlTimeoutMaxRetries = 3;
 var outputDir = systemArguments.outputdir + '/' + Date.now();
 
 // Get includes
-var configuration = require('./configurations/' + systemArguments.config + '.js');
+var configuration = require(systemArguments.config);
 var genericFunctions = require('./includes/generic_functions.js');
 var cookieParty = require('./includes/cookie_party.js');
 var resourceParty = require('./includes/resource_party.js');
