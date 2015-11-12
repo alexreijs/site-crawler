@@ -46,7 +46,7 @@ $data = $database->select('jobs', 'id');
           <ul class="nav nav-pills pull-right">
             <li role="presentation"<?php if ($_SESSION['action'] == 'home') echo ' class="active"';?>><a href="index.php?action=home">Home</a></li>
             <li role="presentation"<?php if ($_SESSION['action'] == 'crawl') echo ' class="active"';?>><a href="index.php?action=crawl">Crawl</a></li>
-            <li role="presentation"<?php if ($_SESSION['action'] == 'activity') echo ' class="active"';?>><a href="index.php?action=activity">Activity</a></li>
+            <li role="presentation"<?php if ($_SESSION['action'] == 'jobs') echo ' class="active"';?>><a href="index.php?action=jobs">Jobs</a></li>
             <li role="presentation"<?php if ($_SESSION['action'] == 'about') echo ' class="active"';?>><a href="index.php?action=about">About</a></li>
           </ul>
         </nav>
@@ -60,7 +60,7 @@ $data = $database->select('jobs', 'id');
 	switch($_SESSION['action']) {
 		case 'crawl'	: require_once('crawl.php'); 
 				break;
-		case 'activity'	: require_once('activity.php');
+		case 'jobs'	: require_once('jobs.php');
 				break;
 		default		: require_once('home.php');
 				break;

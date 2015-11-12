@@ -7,15 +7,17 @@ $jobs = $database->select('jobs', '*', ['ORDER' => 'id DESC', 'LIMIT' => '50']);
 if (count($jobs) > 0) {
 
 ?>
+<div><center>This table refreshes automatically every 5 seconds<br/>&nbsp;</center></div>
 <table class="table">
 
 	<tr>
 
+		<th>Status</th>
 		<th>ID</th>
 		<th>Date</th>
-		<th>Status</th>
 		<th>URL</th>
-		<th>Screenshots</th>
+		<th>Consent</th>
+		<th>Screenshot</th>
 		<th>Cookies</th>
 		<th>Resources</th>
 		<th>Errors</th>
@@ -28,8 +30,6 @@ if (count($jobs) > 0) {
 
 		echo '<tr>';
 
-			echo '<td>' . $job['id'] . '</td>';
-			echo '<td>' . $job['date'] . '</td>';
 			echo '<td>';
 				switch ($job['status']) {
 					case 0: echo '<img src="./images/loading.gif" border="0"/>';
@@ -41,16 +41,21 @@ if (count($jobs) > 0) {
 				}
 			echo '</td>';
 
+			echo '<td>' . $job['id'] . '</td>';
+			echo '<td>' . $job['date'] . '</td>';
+
 			echo '<td><a href="' . $job['url'] . '" target="_BLANK">' . $job['url'] . '</a></td>';
+
+			echo '<td>' . ($job['cookie_consent'] ? 'Yes' : 'No') . '</td>';
 
 			echo '<td>';
 				if ($job['screenshots']) {
 					switch ($job['status']) {
-						case 0: echo 'zip';
+						case 0: echo 'png';
 							break;
-						case 1: echo 'zip';
+						case 1: echo 'png';
 							break;
-						case 2: echo '<a href="#download.php?type=screenshots&id=' . $job['id']. '">zip</a>';
+						case 2: echo '<a href="download.php?type=screenshots&id=' . $job['id']. '">png</a>';
 							break;
 					}
 				}

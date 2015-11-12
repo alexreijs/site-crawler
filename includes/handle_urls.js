@@ -42,6 +42,15 @@ function handleUrl(url){
 			'secure'   : false,
 			'expires'  : (new Date()).getTime() + (1000 * 60 * 60)
 		});
+		phantom.addCookie({
+			'name'     : 'consentBarViewCount',
+			'value'    : '2',
+			'domain'   : '.' + genericFunctions.parseURL(url).host,
+			'path'     : '/',
+			'httponly' : false,
+			'secure'   : false,
+			'expires'  : (new Date()).getTime() + (1000 * 60 * 60)
+		});
 	}
 
 	// Open current url

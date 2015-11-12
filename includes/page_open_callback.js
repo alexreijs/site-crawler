@@ -94,11 +94,19 @@ function pageOpenCallback(status) {
 				// Render screenshot as png
 				if (configuration.screenshotPage && systemArguments.norendering != 1) {
 					filename =  outputDir + '/screenshots/' + encodeURIComponent(location.host + location.path) + '.png';
+					
+					if (typeof configuration.clipRect == 'undefined')
+						clipRect = {width: 0, height: 0};
+					else {
+						clipRect = configuration.clipRect;
+						page.clipRect = configuration.clipRect;
+					}
+						
 					exportLists.screenshots.list.push([
 						systemArguments.config, timestamp, location.protocol, location.host, genericFunctions.encloseQuotes(location.path), 
-						configuration.clipRect.width, configuration.clipRect.height, genericFunctions.encloseQuotes(encodeURIComponent(location.host + location.path) + '.png')
+						clipRect.width, clipRect.height, genericFunctions.encloseQuotes(encodeURIComponent(location.host + location.path) + '.png')
 					].join(delimiter));
-					page.clipRect = configuration.clipRect;
+
 					page.render(filename);
 					console.log('    ' + 'Saved screenshot');
 				}

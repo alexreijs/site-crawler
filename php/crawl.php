@@ -1,10 +1,16 @@
 <form action="index.php" method="post">
 
-	<input type="hidden" name="action" value="activity">
+	<input type="hidden" name="action" value="jobs">
 
 	<div class="form-group">
 		<label for="inputURL">URL</label>
 		<input name="url" type="input" class="form-control" id="inputURL" placeholder="URL">
+	</div>
+
+	<div class="checkbox">
+		<label>
+			<input name="cookie_consent" type="checkbox" id="inpupCookieConsent"> Give cookie consent
+		</label>
 	</div>
 
 	<div class="checkbox">

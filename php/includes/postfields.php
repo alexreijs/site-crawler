@@ -13,6 +13,7 @@ if ($fieldsPresent) {
 
 	$dataArray = array(
 		'url' => $_REQUEST['url'],
+		'cookie_consent' => (isSet($_REQUEST['cookie_consent']) && $_REQUEST['cookie_consent'] == 'on') ? 1 : 0,
 		'status' => 0,
 		'screenshots' => (isSet($_REQUEST['screenshots']) && $_REQUEST['screenshots'] == 'on') ? 1 : 0,
 		'cookies' => (isSet($_REQUEST['cookies']) && $_REQUEST['cookies'] == 'on') ? 1 : 0,

@@ -1,0 +1,4 @@
+RewriteEngine On
+RewriteBase /site-crawler/
+RewriteCond %{THE_REQUEST} (crawl) [NC]
+RewriteRule ^site-crawler/(.*)$ index.php?action=$1 [R]
