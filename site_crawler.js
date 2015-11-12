@@ -6,7 +6,9 @@ var timestamp = Date.now();
 
 // Get system arguments
 var system = require('system');
-systemArguments = {};
+var systemArguments = {};
+var x, argument = null;
+
 for (x in system.args) {
 	argument = system.args[x];
 	if (/[a-z_/]*=[a-z_/]*/.test(argument))
@@ -16,12 +18,15 @@ for (x in system.args) {
 // Check working directory
 fs.changeWorkingDirectory((typeof systemArguments.workingdir == 'undefined') ? '.' : systemArguments.workingdir);
 
+// Define config file
+configFile = fs.exists(systemArguments.config) ? systemArguments.config : fs.workingDirectory + '/configurations/' + systemArguments.config + '.js';
+
 // Check for mandatory arguments
 if (typeof systemArguments.config == 'undefined') {
 	console.log('Please specify a configuration by using "config=xxx" as parameter');
 	phantom.exit();
 }
-else if (!fs.exists(fs.workingDirectory + '/configurations/' + systemArguments.config + '.js')) {
+else if (!fs.exists(configFile)) {
 	console.log('The configuration file you specified could not be found');
 	phantom.exit();
 }
@@ -40,7 +45,7 @@ var urlTimeoutMaxRetries = 3;
 var outputDir = systemArguments.outputdir + '/' + Date.now();
 
 // Get includes
-var configuration = require(fs.workingDirectory + '/configurations/' + systemArguments.config + '.js');
+var configuration = require(configFile);
 var genericFunctions = require(fs.workingDirectory + '/includes/generic_functions.js');
 var cookieParty = require(fs.workingDirectory + '/includes/cookie_party.js');
 var resourceParty = require(fs.workingDirectory + '/includes/resource_party.js');

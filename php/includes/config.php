@@ -3,7 +3,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-require_once('./includes/medoo/medoo.php');
+require_once(dirname(__FILE__) . '/medoo/medoo.php');
 
 $database = new medoo([
         'database_type' => 'mysql',
@@ -13,6 +13,10 @@ $database = new medoo([
         'password' => '1234',
         'charset' => 'utf8',
 ]);
+
+$_SESSION['config'] = [
+	'siteCrawlerLocation' => '/usr/local/repos/site-crawler'
+];
 
 
 $sysVars = array('action' => 'home');

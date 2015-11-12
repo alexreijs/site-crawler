@@ -1,11 +1,8 @@
 <?php
 
-require_once('./includes/config.php');
+require_once(dirname(__FILE__) . '/includes/config.php');
 
 $data = $database->select('jobs', 'id');
-
-require_once('./includes/postfields.php');
-
 
 ?>
 
@@ -28,6 +25,8 @@ require_once('./includes/postfields.php');
     <!-- Custom styles for this template -->
     <link href="./css/jumbotron-narrow.css" rel="stylesheet">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -37,7 +36,10 @@ require_once('./includes/postfields.php');
 
   <body>
 
+
     <div class="container">
+
+      <?php require_once('./includes/postfields.php'); ?>
 
       <div class="header clearfix">
         <nav>
@@ -50,6 +52,8 @@ require_once('./includes/postfields.php');
         </nav>
         <h3 class="text-muted">Site-Crawler</h3>
       </div>
+
+
 
 	<?php
 
