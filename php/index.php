@@ -70,7 +70,7 @@ $data = $database->select('jobs', 'id');
 
 
       <footer class="footer">
-        <p>&copy; Sanoma 2015</p>
+        <p>&copy; Sanoma 2015 - Alexander Reijs &lt;alexander.reijs@sanoma.com&gt;</p>
       </footer>
 
     </div> <!-- /container -->
