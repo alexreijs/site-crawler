@@ -12,17 +12,17 @@ switch($_REQUEST['type']) {
 header('Content-type: ' . $contentType);
 header('Content-Disposition: attachment; filename="' . $_REQUEST['type'] . '_' . $_REQUEST['id'] . '.' . $contentExtension . '"');
 
-$outputDirs = glob('/var/tmp/site-crawler/job_' . $_REQUEST['id']. '/*' , GLOB_ONLYDIR);
+$outputDirs = glob('/tmp/site-crawler/job_' . $_REQUEST['id']. '/*' , GLOB_ONLYDIR);
 $outputDir = end($outputDirs);
 
 switch($_REQUEST['type']) {
 	case 'screenshots':	echo file_get_contents($outputDir . '/screenshots/' . end(scandir($outputDir . '/screenshots/')));
 				break;
-	case 'cookies':		echo file_get_contents($outputDir . '/cookies.txt');
+	case 'cookies':		echo preg_replace('/^\h*\v+/m', '', file_get_contents($outputDir . '/cookies.txt'));
 				break;
-	case 'resources':	echo file_get_contents($outputDir . '/resources.txt');
+	case 'resources':	echo preg_replace('/^\h*\v+/m', '', file_get_contents($outputDir . '/resources.txt'));
 				break;
-	case 'errors':		echo file_get_contents($outputDir . '/errors.txt');
+	case 'errors':		echo preg_replace('/^\h*\v+/m', '', file_get_contents($outputDir . '/errors.txt'));
 				break;
 }
 

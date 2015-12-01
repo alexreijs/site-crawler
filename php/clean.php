@@ -7,7 +7,7 @@ $query = 'TRUNCATE jobs';
 $result = mysql_query($query) or die('Query failed: ' . mysql_error());
 
 
-exec('rm /var/tmp/site-crawler-job*.js');
-exec('rm -r /var/tmp/site-crawler')
+exec('rm /tmp/site-crawler-job*.js');
+exec('rm -r /tmp/site-crawler')
 
 ?>

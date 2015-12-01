@@ -33,6 +33,8 @@ if (count($jobs) > 0) {
 
 			echo '<td>';
 				switch ($job['status']) {
+					case -1: echo '<img src="./images/error.gif" border="0"/>';
+						break;
 					case 0: echo '<img src="./images/loading.gif" border="0"/>';
 						break;
 					case 1: echo '<img src="./images/play.png" border="0"/>';
