@@ -13,6 +13,7 @@ foreach($jobs as $index => $job) {
 		case 0: // Create configuration file
 			$config = " module.exports = {\n";
 			$config .= "	sanomaConsentCategories: [" . ($job['cookie_consent'] ? "'atinternet', 'ads', 'stats', 'functional', 'interests', 'stir', 'social', 'videoplaza'" : "") . "],\n";
+			$config .= "	getAllDeeplinks: " . $job['deeplinks'] . ",\n";
 			$config .= "	getContentDeeplink: 0,\n";
 			$config .= "	urls: ['" . $job['url'] . "'],\n";
 			$config .= "	zoomFactor: 1,\n";

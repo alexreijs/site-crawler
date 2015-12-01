@@ -32,9 +32,9 @@ body {
 }
 
 /* Customize container */
-@media (min-width: 768px) {
+@media (min-width: 850px) {
   .container {
-    max-width: 830px;
+    max-width: 900px;
   }
 }
 .container-narrow > hr {
@@ -60,7 +60,7 @@ body {
 }
 
 /* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 850px) {
   /* Remove the padding we set earlier */
   .header,
   .marketing,

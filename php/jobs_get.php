@@ -17,6 +17,7 @@ if (count($jobs) > 0) {
 		<th>Date</th>
 		<th>URL</th>
 		<th>Consent</th>
+		<th>Deeplinks</th>
 		<th>Screenshot</th>
 		<th>Cookies</th>
 		<th>Resources</th>
@@ -47,6 +48,8 @@ if (count($jobs) > 0) {
 			echo '<td><a href="' . $job['url'] . '" target="_BLANK">' . $job['url'] . '</a></td>';
 
 			echo '<td>' . ($job['cookie_consent'] ? 'Yes' : 'No') . '</td>';
+
+			echo '<td>' . ($job['deeplinks'] ? 'Yes' : 'No') . '</td>';
 
 			echo '<td>';
 				if ($job['screenshots']) {

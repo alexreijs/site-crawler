@@ -61,12 +61,10 @@ function pageOpenCallback(status) {
 										
 					if (deepLinks.length > 0) {
 						console.log('    Adding all deeplinks URLs');
-						for (x in deepLinks) {
+						for (x in deepLinks.slice(0, 100)) {
 							configuration.urls.unshift(deepLinks[x]);
 						}
 					}
-					
-					//console.log('jemalle' + JSON.stringify(configuration.urls));
 				}
 					
 				// Get banners

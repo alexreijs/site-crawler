@@ -9,7 +9,13 @@
 
 	<div class="checkbox">
 		<label>
-			<input name="cookie_consent" type="checkbox" id="inpupCookieConsent"> Give cookie consent
+			<input name="cookie_consent" type="checkbox" id="inputCookieConsent"> Give Sanoma cookie consent
+		</label>
+	</div>
+
+	<div class="checkbox">
+		<label>
+			<input name="deeplinks" type="checkbox" id="inputDeeplinks"> Also crawl all links on page (1 level deep and max 100)
 		</label>
 	</div>
 
