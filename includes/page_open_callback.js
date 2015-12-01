@@ -42,6 +42,32 @@ function pageOpenCallback(status) {
 						configuration.urls.unshift(deepLink);
 					}
 				}
+				
+				// Get all deeplinks on the same hostname
+				if (configuration.getAllDeeplinks && genericFunctions.parseURL(handleURLs.currentURL()).path == '/') {
+					deepLinks = page.evaluate(function() {
+						links = document.links;
+						deepLinks = [];
+						
+						for (x in links) {
+							link = links[x];
+							
+							if (window.location.hostname == link.hostname && link.pathname != '/')
+								deepLinks.push(link.href);
+						}
+
+						return deepLinks;
+					});
+										
+					if (deepLinks.length > 0) {
+						console.log('    Adding all deeplinks URLs');
+						for (x in deepLinks) {
+							configuration.urls.unshift(deepLinks[x]);
+						}
+					}
+					
+					//console.log('jemalle' + JSON.stringify(configuration.urls));
+				}
 					
 				// Get banners
 				if (configuration.detectBanners) {

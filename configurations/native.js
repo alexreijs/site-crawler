@@ -1,5 +1,6 @@
 module.exports = {
 	sanomaConsentCategories: [],
+	getAllDeeplinks: false,
 	getContentDeeplink: true,
 	//urls: ['http://www.viva.nl', 'http://forum.viva.nl', 'http://www.wtf.nl', 'http://www.libelle.nl', 'http://www.margriet.nl', 'http://www.flairathome.nl/', 'http://www.grazia.nl', 'http://www.beaumonde.nl', 'http://www.zie.nl', 'http://www.lindanieuws.nl'],	
 	//urls: ['http://www.viva.nl', 'http://forum.viva.nl', 'http://www.wtf.nl', 'http://www.libelle.nl', 'http://www.margriet.nl', 'http://www.flairathome.nl/', 'http://www.grazia.nl', 'http://www.beaumonde.nl', 'http://www.zie.nl', 'http://www.lindanieuws.nl'],	

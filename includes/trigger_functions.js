@@ -1,5 +1,6 @@
 module.exports = {
 	onAlert: onAlert,
+	onConsoleMessage: onConsoleMessage,
 	onError: onError,
 	onResourceRequested: onResourceRequested,
 	onResourceReceived: onResourceReceived,
@@ -10,6 +11,10 @@ module.exports = {
 // Hook page alert so that we can debug more easily
 function onAlert(msg) {
   console.log('ALERT: ' + msg);
+};
+
+function onConsoleMessage(msg, lineNum, sourceId) {
+  console.log('CONSOLE: ' + msg + ' (from line #' + lineNum + ' in "' + sourceId + '")');
 };
 
 // Hook page errors so that we can save them to a file

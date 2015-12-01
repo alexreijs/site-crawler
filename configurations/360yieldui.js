@@ -1,5 +1,6 @@
 module.exports = {
 	sanomaConsentCategories: [],
+	getAllDeeplinks: false,
 	getContentDeeplink: false,
 	urls: ['https://360yield.com/'],	
 	zoomFactor: 1,

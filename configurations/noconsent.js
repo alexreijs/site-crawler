@@ -1,5 +1,6 @@
 module.exports = {
 	sanomaConsentCategories: ['functional', 'stir', 'atinternet', 'stats', 'videoplaza'],
+	getAllDeeplinks: false,
 	getContentDeeplink: true,
 	//urls: ['http://www.nu.nl/', 'http://www.zie.nl'],	
 	zoomFactor: 1,

@@ -1,5 +1,6 @@
 module.exports = {
 	sanomaConsentCategories: [],
+	getAllDeeplinks: false,
 	getContentDeeplink: true,
 	//urls: ['http://www.dienstmakkers.nl'],	
 	zoomFactor: 1,
