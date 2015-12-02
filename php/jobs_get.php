@@ -47,7 +47,11 @@ if (count($jobs) > 0) {
 			echo '<td>' . $job['id'] . '</td>';
 			echo '<td>' . $job['date'] . '</td>';
 
-			echo '<td><a href="' . $job['url'] . '" target="_BLANK">' . $job['url'] . '</a></td>';
+			echo '<td>';
+			foreach (explode(';', $job['url']) as $index => $url) {
+				echo '<a href="' . $url . '" target="_BLANK">' . $url . '</a><br/>';
+			}
+			echo '</td>';
 
 			echo '<td>' . ($job['cookie_consent'] ? 'Yes' : 'No') . '</td>';
 

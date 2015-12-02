@@ -12,7 +12,7 @@ foreach($fieldsToCheck as $index => $field) {
 if ($fieldsPresent) {
 
 	$dataArray = array(
-		'url' => $_REQUEST['url'],
+		'url' => implode(';', array_slice(explode("<br />", trim(preg_replace('/\s\s+/', '', nl2br($_REQUEST['url'])))), 0, 10)),
 		'cookie_consent' => (isSet($_REQUEST['cookie_consent']) && $_REQUEST['cookie_consent'] == 'on') ? 1 : 0,
 		'deeplinks' => (isSet($_REQUEST['deeplinks']) && $_REQUEST['deeplinks'] == 'on') ? 1 : 0,
 		'status' => 0,

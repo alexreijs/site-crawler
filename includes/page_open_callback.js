@@ -61,7 +61,7 @@ function pageOpenCallback(status) {
 										
 					if (deepLinks.length > 0) {
 						console.log('    Adding all deeplinks URLs');
-						for (x in deepLinks.slice(0, 100)) {
+						for (x in deepLinks.slice(0, 50)) {
 							configuration.urls.unshift(deepLinks[x]);
 						}
 					}
