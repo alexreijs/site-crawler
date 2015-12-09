@@ -37,12 +37,11 @@ function currentURL() {
 function handleUrl(url){
 
 	// Create timeout
-	clearTimeout(urlTimeout);
-	urlTimeout = setTimeout(function(){
-		console.log('    Encountered timeout ..');
+	//clearTimeout(urlTimeout);
+	//urlTimeout = setTimeout(function(){
+	//	console.log('    Encountered timeout ..');
 		//nextUrl();
-	}, timeoutMS);
-	
+	//}, timeoutMS);
 
 	// Create export header lines
 	for (listName in exportLists) {
