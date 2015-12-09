@@ -1,2 +1,0 @@
-Configuration;Timestamp;LocationProtocol;LocationHostname;LocationPathname;BannerID;BannerParentID;BannerFilename;BannerDescription;BannerWidth;BannerHeight;BannerTop;BannerLeft
-
