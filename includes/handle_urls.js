@@ -108,6 +108,7 @@ function handleUrl(url){
 						setTimeout(function() {
 							pageOpenCallback.pageOpenCallback();
 							logTimeElapsed();
+							delete urlStates[url];
 							nextUrl();
 						}, onloadWait);
 					}
