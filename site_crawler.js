@@ -38,7 +38,8 @@ else if (typeof systemArguments.norendering == 'undefined')
 	systemArguments.norendering = 0;
 
 // Set settings
-var onloadWait = 3500;
+var onloadWait = 2500;
+var urlInterval = 2000;
 var delimiter = ';';
 var timeoutMS = 5000;
 var urlTimeoutMaxRetries = 3;

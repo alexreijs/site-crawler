@@ -7,7 +7,6 @@ $jobs = $database->select('jobs', '*', ['ORDER' => 'id DESC', 'LIMIT' => '50']);
 if (count($jobs) > 0) {
 
 ?>
-<div><center>This table refreshes automatically every 5 seconds<br/>&nbsp;</center></div>
 <table class="table">
 
 	<tr>
@@ -115,6 +114,9 @@ if (count($jobs) > 0) {
 	?>
 
 </table>
+
+<div><center>This table refreshes automatically every 5 seconds<br/>&nbsp;</center></div>
+
 
 <?php
 
