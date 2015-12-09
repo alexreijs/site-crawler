@@ -104,6 +104,10 @@ var exportLists = {
 	 	"list": [],
 		"headers": ['Configuration', 'Timestamp', 'LocationProtocol', 'LocationHostname', 'LocationPathname', 'ScreenshotWidth', 'ScreenshotHeight', 'Filename']
 	},
+	"libraries": {
+	 	"list": [],
+		"headers": ['Configuration', 'Timestamp', 'LocationProtocol', 'LocationHostname', 'LocationPathname', 'LibraryName', 'LibraryVersion']
+	},
 	"errors": {
 		"list": [],
 		"log": "Tracked [x] errors",

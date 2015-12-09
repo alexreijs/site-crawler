@@ -20,6 +20,7 @@ foreach($jobs as $index => $job) {
 			$config .= "	userAgent: 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0',\n";
 			$config .= "	viewportSize: {width: 1280, height: 800},\n";
 			//$config .= "	clipRect: {top: 0, left: 0, width: 1280, height: 4000},\n";
+			$config .= "	scanLibraries: " . $job['libraries'] . ",\n";
 			$config .= "	screenshotPage: " . $job['screenshots'] . ",\n";
 			$config .= "	detectBanners: 0,\n";
 			$config .= "	storeCookies: " . $job['cookies'] . ",\n"; 

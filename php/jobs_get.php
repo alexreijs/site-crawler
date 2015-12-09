@@ -20,6 +20,7 @@ if (count($jobs) > 0) {
 		<th>Screenshot</th>
 		<th>Cookies</th>
 		<th>Resources</th>
+		<th>Libaries</th>
 		<th>Errors</th>
 
 	</tr>
@@ -47,9 +48,17 @@ if (count($jobs) > 0) {
 			echo '<td>' . $job['date'] . '</td>';
 
 			echo '<td>';
+			
+			$i = 1;
 			foreach (explode(';', $job['url']) as $index => $url) {
 				echo '<a href="' . $url . '" target="_BLANK">' . $url . '</a><br/>';
+				$i++;
+				if ($i > 10) {
+					echo '...';
+					break;
+				}
 			}
+			
 			echo '</td>';
 
 			echo '<td>' . ($job['cookie_consent'] ? 'Yes' : 'No') . '</td>';
@@ -95,6 +104,19 @@ if (count($jobs) > 0) {
 				}
 			echo '</td>';
 
+			echo '<td>';
+				if ($job['libaries']) {
+					switch ($job['status']) {
+						case 0: echo 'csv';
+							break;
+						case 1: echo 'csv';
+							break;
+						case 2: echo '<a href="download.php?type=libraries&id=' . $job['id']. '">csv</a>';
+							break;
+					}
+				}
+			echo '</td>';
+			
 			echo '<td>';
 				if ($job['errors']) {
 					switch ($job['status']) {

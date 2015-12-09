@@ -52,7 +52,7 @@ function pageOpenCallback(status) {
 								
 			if (deepLinks.length > 0) {
 				console.log('    Adding all deeplinks URLs');
-				for (x in deepLinks.slice(0, 50)) {
+				for (x in deepLinks.slice(0, 10)) {
 					configuration.urls.unshift(deepLinks[x]);
 				}
 			}
@@ -105,6 +105,11 @@ function pageOpenCallback(status) {
 			}
 		}
 		
+		// Get javascript third party libraries
+		if (configuration.scanLibraries) {
+			jQueryVersion = page.evaluate(function () {return jQuery().jquery;});
+			exportLists.libraries.list.push([systemArguments.config, timestamp, location.protocol, location.host, genericFunctions.encloseQuotes(location.path), 'JQuery', jQueryVersion].join(delimiter));
+		}		
 		
 		// Render screenshot as png
 		if (configuration.screenshotPage && systemArguments.norendering != 1) {
