@@ -1,14 +1,33 @@
 module.exports = {
 	handleUrl: handleUrl,
 	nextUrl: nextUrl,
-	start: start,
 	currentURL: currentURL,
 	logTimeElapsed: logTimeElapsed
 };
 
 var url;
 var urlTimeout;
-var urlTimeoutRetryCount = 0;
+var urlTimeoutRetryCount = {};
+
+var urlStates = {};
+var urlInterval = setInterval(function() {
+	
+	if(typeof url != 'undefined') {
+		
+		// New request
+		if (typeof urlStates[url] == 'undefined') {
+			
+			// Check if we need to go to next URL after max retries
+			if (urlTimeoutRetryCount[url] > urlTimeoutMaxRetries)
+				nextUrl();
+			
+			urlStates[url] = {'started': Date.now()};
+			handleUrl(url);
+		}
+	}
+
+}, 10);
+
 
 function currentURL() {
 	return url;
@@ -16,6 +35,14 @@ function currentURL() {
 
 // This function will be recursively called until all urls have been handled
 function handleUrl(url){
+
+	// Create timeout
+	clearTimeout(urlTimeout);
+	urlTimeout = setTimeout(function(){
+		console.log('    Encountered timeout ..');
+		//nextUrl();
+	}, timeoutMS);
+	
 
 	// Create export header lines
 	for (listName in exportLists) {
@@ -55,57 +82,57 @@ function handleUrl(url){
 
 	// Open current url
 	console.log(Date());
-	console.log('Openening address: ' + url + (urlTimeoutRetryCount > 0 ? ' (retry count: ' + urlTimeoutRetryCount + ')' : ''));
-	page.open(url, pageOpenCallback.pageOpenCallback);
-	
+	console.log('Openening address: ' + url + (urlTimeoutRetryCount[url] > 0 ? ' (retry count: ' + urlTimeoutRetryCount[url] + ')' : ''));
+		
+	page.open(url, function (status) {	
+
+		if (status !== 'success') { 
+			console.log('    Request exitted with status: ' + status);
+			console.log('Retrying URL\n');
+			urlTimeoutRetryCount[url] = (typeof urlTimeoutRetryCount[url] == 'undefined' ? 1 : urlTimeoutRetryCount[url] + 1);
+			delete urlStates[url];
+		}
+		else {
+			function checkReadyState() {
+				setTimeout(function () {
+					var readyState = page.evaluate(function () {
+						return document.readyState;
+					});
+					
+					if(typeof urlStates[url] == 'undefined')
+						urlStates[url] = {};
+					
+					urlStates[url][readyState] = Date.now();
+			
+					if (readyState === 'complete') {
+						console.log('    Page load completed - waiting for async (' + onloadWait / 1000 +' sec)');
+						setTimeout(function() {
+							pageOpenCallback.pageOpenCallback();
+							logTimeElapsed();
+							nextUrl();
+						}, onloadWait);
+					}
+					else
+						checkReadyState();
+				});
+			}
+			checkReadyState();
+		}
+
+	});
 }
 
-function nextUrl(wasSuccess){
-	
-	// Set a timeout
-	window.clearTimeout(urlTimeout);
-	urlTimeout = window.setTimeout(timeout, timeoutMS);
-	
-	// Check if we need to to a retry
-	if (!wasSuccess) {
-		urlTimeoutRetryCount++;
-		
-		// Stay at current URL
-		if (urlTimeoutRetryCount <= urlTimeoutMaxRetries)
-			url = currentURL();
-		// Get next URL
-		else {
-			url = configuration.urls.shift();
-			urlTimeoutRetryCount = 0;
-		}
-	}
-	// Get next URL
-	else {
-		url = configuration.urls.shift();
-		urlTimeoutRetryCount = 0;
-	}
+function nextUrl(){
+	url = configuration.urls.shift();
 	
 	// If no more URLs found, exit phantom
 	if(!url) {
 		console.log('Done, exiting phantomJS..\n');		
 		phantom.exit();
 	}
-	
-	// Process URL
-	handleUrl(url);
 }
 
-function start() {
-	console.log('\nStarting phantomJS, using configuration: ' + systemArguments.config + '\n');
-	nextUrl(true);
-}
 
-function timeout() {
-	console.log('    Encountered timeout, ' + (urlTimeoutRetryCount + 1 > urlTimeoutMaxRetries ? 'reached max number of retries' : 'retrying'));
-	logTimeElapsed(0);
-	nextUrl(false);
-}
-
-function logTimeElapsed(timestampDelta) {
-	console.log('Elapsed: ' + Math.round((Date.now() - timestamp - timestampDelta) * 1000) / 1000000 + ' seconds\n');
+function logTimeElapsed() {
+	console.log('Elapsed: ' + (urlStates[url]['complete'] - urlStates[url]['started'] + onloadWait) / 1000 + ' seconds\n');
 }

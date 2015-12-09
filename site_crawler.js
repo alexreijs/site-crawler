@@ -38,11 +38,10 @@ else if (typeof systemArguments.norendering == 'undefined')
 	systemArguments.norendering = 0;
 
 // Set settings
-var onloadWait = 2500;
-var urlInterval = 2000;
+var onloadWait = 5000;
 var delimiter = ';';
 var timeoutMS = 5000;
-var urlTimeoutMaxRetries = 3;
+var urlTimeoutMaxRetries = 2;
 var outputDir = systemArguments.outputdir + '/' + Date.now();
 
 // Get includes
@@ -113,7 +112,8 @@ var exportLists = {
 };
 
 // Start with first URL
-handleURLs.start();
+console.log('\nStarting phantomJS, using configuration: ' + systemArguments.config + '\n');
+handleURLs.nextUrl();
 
 // cd C:\Users\A.Reijs\Repos\site-crawler\
 // phantomjs --ssl-protocol=any --ignore-ssl-errors=true .\site_crawler.js config=desktop outputdir=.\output
