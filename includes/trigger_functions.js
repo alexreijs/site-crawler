@@ -14,7 +14,7 @@ function onAlert(msg) {
 };
 
 function onConsoleMessage(msg, lineNum, sourceId) {
-  console.log('CONSOLE: ' + msg + ' (from line #' + lineNum + ' in "' + sourceId + '")');
+  //console.log('CONSOLE: ' + msg + ' (from line #' + lineNum + ' in "' + sourceId + '")');
 };
 
 // Hook page errors so that we can save them to a file

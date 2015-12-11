@@ -109,6 +109,7 @@ function pageOpenCallback(status) {
 		if (configuration.scanLibraries) {
 			jQueryVersion = page.evaluate(function () {return jQuery().jquery;});
 			exportLists.libraries.list.push([systemArguments.config, timestamp, location.protocol, location.host, genericFunctions.encloseQuotes(location.path), 'JQuery', jQueryVersion].join(delimiter));
+			console.log('    ' + 'Scanned javascript libraries');
 		}		
 		
 		// Render screenshot as png

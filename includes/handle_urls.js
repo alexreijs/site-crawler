@@ -79,47 +79,59 @@ function handleUrl(url){
 		});
 	}
 
-	// Open current url
 	console.log(Date());
-	console.log('Openening address: ' + url + (urlTimeoutRetryCount[url] > 0 ? ' (retry count: ' + urlTimeoutRetryCount[url] + ')' : ''));
-		
-	page.open(url, function (status) {	
 
-		if (status !== 'success') { 
-			console.log('    Request exitted with status: ' + status);
-			console.log('Retrying URL\n');
-			urlTimeoutRetryCount[url] = (typeof urlTimeoutRetryCount[url] == 'undefined' ? 1 : urlTimeoutRetryCount[url] + 1);
-			delete urlStates[url];
-		}
-		else {
-			function checkReadyState() {
-				setTimeout(function () {
-					var readyState = page.evaluate(function () {
-						return document.readyState;
-					});
-					
-					if(typeof urlStates[url] == 'undefined')
-						urlStates[url] = {};
-					
-					urlStates[url][readyState] = Date.now();
-			
-					if (readyState === 'complete') {
-						console.log('    Page load completed - waiting for async (' + onloadWait / 1000 +' sec)');
-						setTimeout(function() {
-							pageOpenCallback.pageOpenCallback();
-							logTimeElapsed();
-							delete urlStates[url];
-							nextUrl();
-						}, onloadWait);
-					}
-					else
-						checkReadyState();
-				});
+	currentURL = genericFunctions.parseURL(page.url);
+	nextURL = genericFunctions.parseURL(url);
+
+	// Check to see if we are trying to open the same URL repeatedly, this will result in the browser not loading anything. We will go to next url in this case
+	if (currentURL.protocol + '://' + currentURL.host + currentURL.path == nextURL.protocol + '://' + nextURL.host + nextURL.path) {
+		console.log('Skipping address: ' + url + ' (already on same page)\n');	
+		nextUrl();
+	}
+	else {
+		// Open current url
+
+		console.log('Openening address: ' + url + (urlTimeoutRetryCount[url] > 0 ? ' (retry count: ' + urlTimeoutRetryCount[url] + ')' : ''));	
+
+		page.open(url, function (status) {	
+	
+			if (status !== 'success') { 
+				console.log('    Request exitted with status: ' + status);
+				console.log('Retrying URL\n');
+				urlTimeoutRetryCount[url] = (typeof urlTimeoutRetryCount[url] == 'undefined' ? 1 : urlTimeoutRetryCount[url] + 1);
+				delete urlStates[url];
 			}
-			checkReadyState();
-		}
+			else {
+				function checkReadyState() {
+					setTimeout(function () {
+						var readyState = page.evaluate(function () {
+							return document.readyState;
+						});
+						
+						if(typeof urlStates[url] == 'undefined')
+							urlStates[url] = {};
+						
+						urlStates[url][readyState] = Date.now();
+				
+						if (readyState === 'complete') {
+							console.log('    Page load completed - waiting for async (' + onloadWait / 1000 +' sec)');
+							setTimeout(function() {
+								pageOpenCallback.pageOpenCallback();
+								logTimeElapsed();
+								delete urlStates[url];
+								nextUrl();
+							}, onloadWait);
+						}
+						else
+							checkReadyState();
+					});
+				}
+				checkReadyState();
+			}
 
-	});
+		});
+	}
 }
 
 function nextUrl(){

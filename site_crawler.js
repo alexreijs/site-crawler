@@ -40,7 +40,7 @@ else if (typeof systemArguments.norendering == 'undefined')
 // Set settings
 var onloadWait = 5000;
 var delimiter = ';';
-var timeoutMS = 5000;
+var timeoutMS = 10000;
 var urlTimeoutMaxRetries = 2;
 var outputDir = systemArguments.outputdir + '/' + Date.now();
 
