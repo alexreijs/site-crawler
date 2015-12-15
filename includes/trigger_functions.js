@@ -54,7 +54,7 @@ function onResourceReceived(response) {
 // Hook resourse triggers so that we can measure resource loading
 function onResourceTimeout(request) {
 	exportLists.resources.resources[request.id]['failed'] = Date.now() - timestamp;
-	console.log('    Encountered resource timeout..');
+	console.log('    Encountered resource timeout.. (' + request.url + ')');
 	//handleUrls.nextUrl();
 };
 

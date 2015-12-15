@@ -54,7 +54,7 @@ if (count($jobs) > 0) {
 			foreach (explode(';', $job['url']) as $index => $url) {
 				echo '<a href="' . $url . '" target="_BLANK">' . $url . '</a><br/>';
 				$i++;
-				if ($i > 10) {
+				if ($i > 11) {
 					echo '...';
 					break;
 				}
@@ -132,7 +132,7 @@ if (count($jobs) > 0) {
 			echo '</td>';
 
 			//echo '<td><a href="download.php?type=log&id=' . $job['id']. '">log</a></td>';
-			echo '<td><a href="#" onclick="log = window.open(\'./log.php?id=' . $job['id'] . '\', \'site-crawler-log\', \'status=0,scrollbars=1,toolbar=0,width=1024,height=768\'); log.focus();">log</a></td>';
+			echo '<td><a href="#" onclick="log_' . $job['id']. ' = window.open(\'./log.php?id=' . $job['id'] . '\', \'site-crawler-log\', \'status=0,scrollbars=1,toolbar=0,width=1280,height=1024\'); log_' . $job['id'] . '.focus();">log</a></td>';
 
 
 		echo '</tr>';
