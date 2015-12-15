@@ -22,6 +22,7 @@ if (count($jobs) > 0) {
 		<th>Resources</th>
 		<th>Libraries</th>
 		<th>Errors</th>
+		<th>Log</th>
 
 	</tr>
 
@@ -58,7 +59,7 @@ if (count($jobs) > 0) {
 					break;
 				}
 			}
-			
+
 			echo '</td>';
 
 			echo '<td>' . ($job['cookie_consent'] ? 'Yes' : 'No') . '</td>';
@@ -129,6 +130,10 @@ if (count($jobs) > 0) {
 					}
 				}
 			echo '</td>';
+
+			//echo '<td><a href="download.php?type=log&id=' . $job['id']. '">log</a></td>';
+			echo '<td><a href="#" onclick="log = window.open(\'./log.php?id=' . $job['id'] . '\', \'site-crawler-log\', \'status=0,scrollbars=1,toolbar=0,width=1024,height=768\'); log.focus();">log</a></td>';
+
 
 		echo '</tr>';
 

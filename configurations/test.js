@@ -1,8 +1,8 @@
 module.exports = {
 	sanomaConsentCategories: [],
-	getAllDeeplinks: true,	
+	getAllDeeplinks: false,	
 	getContentDeeplink: false,
-	urls: ['http://www.zie.nl/'],	
+	urls: ['http://www.duckquiz.nl/teaser-video'],	
 	zoomFactor: 1,
 	userAgent: 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0',
 	viewportSize: {width: 640, height: 1136},
@@ -10,7 +10,7 @@ module.exports = {
 	scanLibraries: true,
 	screenshotPage: false,
 	detectBanners: false,
-	storeCookies: false,
+	storeCookies: true,
 	trackResources: true,
-	trackErrors: true
+	trackErrors: false
 };

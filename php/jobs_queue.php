@@ -3,6 +3,14 @@
 
 require_once(dirname(__FILE__) . '/includes/config.php');
 
+// Create directory structure
+$directory = '/tmp/site-crawler/';
+if (!is_dir($directory))
+	mkdir($directory);
+
+$directory .= 'logs/';
+if (!is_dir($directory))
+	mkdir($directory);
 
 $jobs = $database->select('jobs', '*', ['status' => [0, 1]]);
 
@@ -37,14 +45,19 @@ foreach($jobs as $index => $job) {
 			}
 
 			// Create job command
-			$command = '/usr/local/bin/phantomjs ' . $_SESSION['config']['siteCrawlerLocation'] . '/site_crawler.js config=' . $configFile . ' workingdir=' . $_SESSION['config']['siteCrawlerLocation'] . ' outputdir=/tmp/site-crawler/job_' . $job['id']. '/';
+			//$command = '/usr/local/bin/phantomjs ' . $_SESSION['config']['siteCrawlerLocation'] . '/site_crawler.js config=' . $configFile . ' workingdir=' . $_SESSION['config']['siteCrawlerLocation'] . ' outputdir=/tmp/site-crawler/job_' . $job['id']. '/';
+			$command = 'sh ' . $_SESSION['config']['siteCrawlerLocation'] . '/sh/run-job.sh ' . $configFile . ' /tmp/site-crawler/job_' . $job['id'] . '/ /tmp/site-crawler/logs/job_' . $job['id'] . '.log';
 
 			// Make sure job starts in background
 			$command = 'nohup ' . $command . ' > /dev/null 2>&1 &';
 
 			// Start command
+			//echo $command;
 			exec($command);
+			echo "\n";
 			echo 'starting job: ' . $job['id'];
+
+
 
 			// Set status to 1 in databse
 			$database->update('jobs', ['status' => 1], ['id' => $job['id']]);
