@@ -119,7 +119,6 @@ function handleUrl(url){
 							setTimeout(function() {
 								pageOpenCallback.pageOpenCallback();
 								logTimeElapsed();
-								delete urlStates[url];
 								nextUrl();
 							}, onloadWait);
 						}
@@ -135,8 +134,13 @@ function handleUrl(url){
 }
 
 function nextUrl(){
+
+	// Delete states data from previous URL
+	delete urlStates[url];
+
+	// Get current URL
 	url = configuration.urls.shift();
-	
+
 	// If no more URLs found, exit phantom
 	if(!url) {
 		console.log('Done, exiting phantomJS..\n');		
