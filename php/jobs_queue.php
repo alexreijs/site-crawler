@@ -87,9 +87,9 @@ foreach($jobs as $index => $job) {
 			// When output is found and job is no longer running set status to 2
 			if (!$jobRunning)
 				$database->update('jobs', ['status' => $outputFound ? 2 : -1], ['id' => $job['id']]);
-			// When job is running but log file hasnt changed in 5 minutes, cancel job
+			// When job is running but log file hasnt changed in 10 minutes, cancel job
 			else {
-				if (time() - filemtime($logFile) >= 5 * 60) {
+				if (time() - filemtime($logFile) >= 10 * 60) {
 					exec("ps axf | grep site-crawler-job_" . $job['id'] . ".js | grep -v grep | awk '{print \"kill -9 \" $1}' | sh", $output);
 					$database->update('jobs', ['status' => -1], ['id' => $job['id']]);
 					echo 'killedJob';
