@@ -69,6 +69,8 @@ if (count($jobs) > 0) {
 			echo '<td>';
 				if ($job['screenshots']) {
 					switch ($job['status']) {
+						case -1: echo '<a style="color:orange" href="download.php?type=screenshots&id=' . $job['id']. '">png</a>';
+							break;
 						case 0: echo 'png';
 							break;
 						case 1: echo 'png';
@@ -82,6 +84,8 @@ if (count($jobs) > 0) {
 			echo '<td>';
 				if ($job['cookies']) {
 					switch ($job['status']) {
+						case -1: echo '<a style="color:orange" href="download.php?type=cookies&id=' . $job['id']. '">csv</a>';
+							break;
 						case 0: echo 'csv';
 							break;
 						case 1: echo 'csv';
@@ -95,6 +99,8 @@ if (count($jobs) > 0) {
 			echo '<td>';
 				if ($job['resources']) {
 					switch ($job['status']) {
+						case -1: echo '<a style="color:orange" href="download.php?type=resources&id=' . $job['id']. '">csv</a>';
+							break;
 						case 0: echo 'csv';
 							break;
 						case 1: echo 'csv';
@@ -108,6 +114,8 @@ if (count($jobs) > 0) {
 			echo '<td>';
 				if ($job['libraries']) {
 					switch ($job['status']) {
+						case -1: echo '<a style="color:orange" href="download.php?type=libraries&id=' . $job['id']. '">csv</a>';
+							break;
 						case 0: echo 'csv';
 							break;
 						case 1: echo 'csv';
@@ -121,6 +129,8 @@ if (count($jobs) > 0) {
 			echo '<td>';
 				if ($job['errors']) {
 					switch ($job['status']) {
+						case -1: echo '<a style="color:orange" href="download.php?type=errors&id=' . $job['id']. '">csv</a>';
+							break;
 						case 0: echo 'csv';
 							break;
 						case 1: echo 'csv';
@@ -131,7 +141,6 @@ if (count($jobs) > 0) {
 				}
 			echo '</td>';
 
-			//echo '<td><a href="download.php?type=log&id=' . $job['id']. '">log</a></td>';
 			echo '<td><a href="#" onclick="log_' . $job['id']. ' = window.open(\'./log.php?id=' . $job['id'] . '\', \'site-crawler-log\', \'status=0,scrollbars=1,toolbar=0,width=1280,height=1024\'); log_' . $job['id'] . '.focus();">log</a></td>';
 
 

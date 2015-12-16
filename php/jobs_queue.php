@@ -4,17 +4,24 @@
 require_once(dirname(__FILE__) . '/includes/config.php');
 
 // Create directory structure
-$directory = '/tmp/site-crawler/';
-if (!is_dir($directory))
-	mkdir($directory);
+$mainDir = '/tmp/site-crawler/';
+if (!is_dir($mainDir))
+	mkdir($mainDir);
 
-$directory .= 'logs/';
-if (!is_dir($directory))
-	mkdir($directory);
+$logDir = $mainDir . 'logs/';
+if (!is_dir($logDir))
+	mkdir($logDir);
+
+$confDir = $mainDir . 'configurations/';
+if (!is_dir($confDir))
+	mkdir($confDir);
 
 $jobs = $database->select('jobs', '*', ['status' => [0, 1]]);
 
 foreach($jobs as $index => $job) {
+
+	$logFile = '/tmp/site-crawler/logs/job_' . $job['id'] . '.log';
+	$configFile = '/tmp/site-crawler/configurations/site-crawler-job_' . $job['id'] . '.js';
 
 	switch($job['status']) {
 
@@ -27,7 +34,6 @@ foreach($jobs as $index => $job) {
 			$config .= "	zoomFactor: 1,\n";
 			$config .= "	userAgent: 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101 Firefox/38.0',\n";
 			$config .= "	viewportSize: {width: 1280, height: 800},\n";
-			//$config .= "	clipRect: {top: 0, left: 0, width: 1280, height: 4000},\n";
 			$config .= "	scanLibraries: " . $job['libraries'] . ",\n";
 			$config .= "	screenshotPage: " . $job['screenshots'] . ",\n";
 			$config .= "	detectBanners: 0,\n";
@@ -37,7 +43,6 @@ foreach($jobs as $index => $job) {
 			$config .= "};";
 
 			// Save configuration file
-			$configFile = '/tmp/site-crawler-job_' . $job['id'] . '.js';
 			if (!file_exists($configFile)) {
 				$fs = fopen($configFile, "w") or die("Unable to open file!");
 				fwrite($fs, $config);
@@ -45,8 +50,7 @@ foreach($jobs as $index => $job) {
 			}
 
 			// Create job command
-			//$command = '/usr/local/bin/phantomjs ' . $_SESSION['config']['siteCrawlerLocation'] . '/site_crawler.js config=' . $configFile . ' workingdir=' . $_SESSION['config']['siteCrawlerLocation'] . ' outputdir=/tmp/site-crawler/job_' . $job['id']. '/';
-			$command = 'sh ' . $_SESSION['config']['siteCrawlerLocation'] . '/sh/run-job.sh ' . $configFile . ' /tmp/site-crawler/job_' . $job['id'] . '/ /tmp/site-crawler/logs/job_' . $job['id'] . '.log';
+			$command = 'sh ' . $_SESSION['config']['siteCrawlerLocation'] . '/sh/run-job.sh ' . $configFile . ' /tmp/site-crawler/job_' . $job['id'] . '/ ' . $logFile;
 
 			// Make sure job starts in background
 			$command = 'nohup ' . $command . ' > /dev/null 2>&1 &';
@@ -64,6 +68,9 @@ foreach($jobs as $index => $job) {
 
 			break;
 		case 1:
+			echo 'jobID: ' . $job['id'];
+			echo "\n";
+
 			// Get all running site-crawler jobs
 			$currentJobs = shell_exec("ps -ef | grep 'site_crawler.js config=/tmp/site-crawler-job_'" . $job['id']);
 
@@ -78,16 +85,19 @@ foreach($jobs as $index => $job) {
 			$outputFound = file_exists('/tmp/site-crawler/job_' . $job['id'] . '/');
 
 			// When output is found and job is no longer running set status to 2
-			if (!$jobRunning) {
+			if (!$jobRunning)
 				$database->update('jobs', ['status' => $outputFound ? 2 : -1], ['id' => $job['id']]);
-
-				// Remove configuration file
-				$configFile = '/tmp/site-crawler-job_' . $job['id'] . '.js';
-				unlink($configFile);
+			// When job is running but log file hasnt changed in 5 minutes, cancel job
+			else {
+				$date = new DateTime($job['date']);
+				if (filemtime($logFile) - $date->getTimestamp() >= 5 * 60) {
+					exec("ps axf | grep site-crawler-job_" . $job['id'] . ".js | grep -v grep | awk '{print \"kill -9 \" $1}' | sh", $output);
+					$database->update('jobs', ['status' => -1], ['id' => $job['id']]);
+					echo 'killedJob';
+					echo "\n";
+				}
 			}
 
-			echo 'jobID: ' . $job['id'];
-			echo "\n";
 			echo 'outputFound: ' . $outputFound;
 			echo "\n";
 			echo 'jobRunning: ' . $jobRunning;
