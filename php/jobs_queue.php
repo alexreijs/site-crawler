@@ -72,7 +72,7 @@ foreach($jobs as $index => $job) {
 			echo "\n";
 
 			// Get all running site-crawler jobs
-			$currentJobs = shell_exec("ps -ef | grep 'site_crawler.js config=/tmp/site-crawler-job_'" . $job['id']);
+			$currentJobs = shell_exec("ps -ef | grep 'site_crawler.js config=". $configFile . "'");
 
 			// Check if current job is completed
 			$jobRunning = false;
@@ -89,8 +89,7 @@ foreach($jobs as $index => $job) {
 				$database->update('jobs', ['status' => $outputFound ? 2 : -1], ['id' => $job['id']]);
 			// When job is running but log file hasnt changed in 5 minutes, cancel job
 			else {
-				$date = new DateTime($job['date']);
-				if (filemtime($logFile) - $date->getTimestamp() >= 5 * 60) {
+				if (time() - filemtime($logFile) >= 5 * 60) {
 					exec("ps axf | grep site-crawler-job_" . $job['id'] . ".js | grep -v grep | awk '{print \"kill -9 \" $1}' | sh", $output);
 					$database->update('jobs', ['status' => -1], ['id' => $job['id']]);
 					echo 'killedJob';
