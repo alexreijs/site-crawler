@@ -48,19 +48,19 @@ if (count($jobs) > 0) {
 			echo '<td>' . $job['id'] . '</td>';
 			echo '<td>' . $job['date'] . '</td>';
 
-			echo '<td>';
+			echo '<td><div style="overflow:auto; width:275px; overflow-x:hidden; max-height:200px;">';
 
 			$i = 1;
 			foreach (explode(';', $job['url']) as $index => $url) {
 				echo '<a href="' . $url . '" target="_BLANK">' . $url . '</a><br/>';
 				$i++;
 				if ($i > 11) {
-					echo '...';
-					break;
+				//	echo '...';
+				//	break;
 				}
 			}
 
-			echo '</td>';
+			echo '</div></td>';
 
 			echo '<td>' . ($job['cookie_consent'] ? 'Yes' : 'No') . '</td>';
 
