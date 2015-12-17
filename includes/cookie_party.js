@@ -48,7 +48,7 @@ function detectParty(location, cookie_site, cookie_name) {
 		{"value": cookie_site, 		"regexp": "weborama", 				"party": "Weborama",					"type": "ads"},
 		{"value": cookie_site, 		"regexp": "crwdcntrl", 				"party": "Lotame",						"type": "stats"},
 		{"value": cookie_site, 		"regexp": "sitestat.com", 			"party": "Sitestat (ComScore)",			"type": "stats"},
-		{"value": cookie_site, 		"regexp": "nr-data", 				"party": "New Relic",					"type": "ads"},
+		{"value": cookie_site, 		"regexp": "nr-data", 				"party": "New Relic",					"type": "stats"},
 		{"value": cookie_site, 		"regexp": "liverail", 				"party": "LiveRail",					"type": "ads"},
 		{"value": cookie_site, 		"regexp": "demdex", 				"party": "Media Optimizer (Adobe)",		"type": "ads"},
 		{"value": cookie_site, 		"regexp": "adscale", 				"party": "AdScale",						"type": "ads"},
@@ -68,7 +68,7 @@ function detectParty(location, cookie_site, cookie_name) {
 		{"value": cookie_site, 		"regexp": "revsci", 				"party": "AudienceScience",				"type": "ads"},
 		{"value": cookie_site, 		"regexp": "creative-serving", 		"party": "Platform 161",				"type": "ads"},
 		{"value": cookie_site, 		"regexp": "bidswitch", 				"party": "IPONWEB",						"type": "ads"},
-		{"value": cookie_site, 		"regexp": "bing.com", 				"party": "Bing",						"type": ""},
+		{"value": cookie_site, 		"regexp": "bing.com", 				"party": "Bing",						"type": "social"},
 		{"value": cookie_site, 		"regexp": "spotify.com", 			"party": "Spotify",						"type": "social"},
 		{"value": cookie_site, 		"regexp": "smartadserver", 			"party": "SMART Advserver",				"type": "ads"},
 		{"value": cookie_site, 		"regexp": "spotxchange", 			"party": "SpotXchange",					"type": "ads"},
@@ -84,7 +84,7 @@ function detectParty(location, cookie_site, cookie_name) {
 		{"value": cookie_site,	 	"regexp": "google.com", 			"party": "Google",						"type": "ads"},
 		{"value": cookie_name,		"regexp": "^__insp_", 				"party": "Brightcrove",					"type": "ads"},
 		{"value": cookie_name,		"regexp": "chartbeat", 				"party": "Chartbeat",					"type": "stats"},
-		{"value": cookie_name, 		"regexp": "(session|sess|ss)-?id",		"party": "Site-own",					"type": "functional"},
+		{"value": cookie_name, 		"regexp": "(session|sess|ss)-?id",	"party": "Site-own",					"type": "functional"},
 		{"value": cookie_name, 		"regexp": "SanomaWeb",				"party": "Site-own",					"type": "functional"},
 		{"value": cookie_name, 		"regexp": "sanoma", 				"party": "Sanoma",						"type": "ads"},
 		{"value": cookie_name,		"regexp": "^__utm[a-z]{1}", 		"party": "Google Analytics",			"type": "stats"},
@@ -93,6 +93,19 @@ function detectParty(location, cookie_site, cookie_name) {
 		{"value": cookie_name, 		"regexp": "^_vis_opt", 				"party": "Visual Website Optimiser",	"type": "stats"},
 		{"value": cookie_name, 		"regexp": "consentbarviewcount",	"party": "Sanoma Consent Manager",		"type": "functional"},
 		{"value": cookie_name, 		"regexp": "site_consent",			"party": "Sanoma Consent Manager",		"type": "functional"},
+		{"value": cookie_site, 		"regexp": "bluekai", 				"party": "Bluekai",						"type": "interests"},
+		{"value": cookie_site, 		"regexp": "rfihub", 				"party": "RFI Hub",						"type": "ads"},
+		{"value": cookie_site, 		"regexp": "media6degrees", 			"party": "Media6Degrees",				"type": "interests"},
+		{"value": cookie_site, 		"regexp": "adsymptotic", 			"party": "AdSymptotic",					"type": "ads"},
+		{"value": cookie_site, 		"regexp": "twimg",		 			"party": "Twimg",						"type": "social"},
+		{"value": cookie_site, 		"regexp": "msn",		 			"party": "MSN",							"type": "ads"},
+		{"value": cookie_site, 		"regexp": "ligatus",		 		"party": "Ligatus",						"type": "ads"},
+		{"value": cookie_site, 		"regexp": "bloglovin",		 		"party": "Blog Lovin",					"type": "social"},
+		{"value": cookie_site, 		"regexp": "addtoany",		 		"party": "AddToAny",					"type": "social"},
+		{"value": cookie_site, 		"regexp": "cookie.monster",		 	"party": "Monsterboard",				"type": "interests"},
+		{"value": cookie_site, 		"regexp": "gigya",		 			"party": "Gigya",						"type": "interests"},
+		{"value": cookie_site, 		"regexp": "intercomcdn",		 	"party": "InterCom",					"type": "interests"},
+		{"value": cookie_site, 		"regexp": "pagefair",		 		"party": "PageFair",					"type": "stats"},
 		{"value": location.host, 	"regexp": cookie_site, 				"party": "Site-own",					"type": ""},
 		{"value": cookie_site, 		"regexp": location.host, 			"party": "Site-own",					"type": ""}		
 	];
@@ -105,3 +118,4 @@ function detectParty(location, cookie_site, cookie_name) {
 	
 	return {"party": "", "type": ""};
 }
+
