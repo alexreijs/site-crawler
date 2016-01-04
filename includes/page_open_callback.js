@@ -51,7 +51,8 @@ function pageOpenCallback(status) {
 			});
 								
 			if (deepLinks.length > 0) {
-				console.log('    Adding all deeplinks URLs');
+				console.log('    Adding 10 random deeplinks URLs');
+				genericFunctions.shuffle(deepLinks);
 				for (x in deepLinks.slice(0, 10)) {
 					configuration.urls.unshift(deepLinks[x]);
 				}
