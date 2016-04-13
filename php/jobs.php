@@ -20,7 +20,7 @@ function getActivity() {
 }
 
 getActivity();
-window.setInterval(getActivity, 5000);
+window.setInterval(getActivity, 10000);
 
 </script>
 

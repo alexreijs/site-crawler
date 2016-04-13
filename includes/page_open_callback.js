@@ -70,16 +70,16 @@ function pageOpenCallback(status) {
 				page.clipRect = clipRect;
 				if (Math.sqrt(clipRect.width * clipRect.height) < 750 && clipRect.width > 0 && clipRect.height > 0) {
 					// Render banner to png
-					if (banner.parent.length == 0 && systemArguments.norendering != 1)
-						page.render(outputDir + '/banners/' + encodeURIComponent(banner.id) + '.png');
-					
-					// Add banner to list of banners
-					exportLists.banners.list.push([
-						systemArguments.config, timestamp, location.protocol, location.host, genericFunctions.encloseQuotes(location.path),
-						genericFunctions.encloseQuotes(banner.id), genericFunctions.encloseQuotes(banner.parent), genericFunctions.encloseQuotes(encodeURIComponent(banner.id)), genericFunctions.encloseQuotes(banner.description),
-						Math.round(clipRect.width), Math.round(clipRect.height), Math.round(clipRect.top), Math.round(clipRect.left)
-					].join(delimiter));
+					//if (banner.parent.length == 0 && systemArguments.norendering != 1)
+					//	page.render(outputDir + '/banners/' + encodeURIComponent(banner.id) + '.png');
 				}
+
+				// Add banner to list of banners
+				exportLists.banners.list.push([
+					systemArguments.config, timestamp, location.protocol, location.host, genericFunctions.encloseQuotes(location.path),
+					genericFunctions.encloseQuotes(banner.id), genericFunctions.encloseQuotes(banner.parent), genericFunctions.encloseQuotes(encodeURIComponent(banner.id)), genericFunctions.encloseQuotes(banner.description),
+					Math.round(clipRect.width), Math.round(clipRect.height), Math.round(clipRect.top), Math.round(clipRect.left)
+				].join(delimiter));
 			}
 		}
 		
@@ -144,3 +144,4 @@ function pageOpenCallback(status) {
 		}
 	}
 };
+

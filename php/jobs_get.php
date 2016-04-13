@@ -20,6 +20,7 @@ if (count($jobs) > 0) {
 		<th>Screenshot</th>
 		<th>Cookies</th>
 		<th>Resources</th>
+		<th>Banners</th>
 		<th>Libraries</th>
 		<th>Errors</th>
 		<th>Log</th>
@@ -113,6 +114,21 @@ if (count($jobs) > 0) {
 			echo '</td>';
 
 			echo '<td>';
+				if ($job['banners']) {
+					switch ($job['status']) {
+						case -1: echo '<a style="color:orange" href="download.php?type=banners&id=' . $job['id']. '">csv</a>';
+							break;
+						case 0: echo 'csv';
+							break;
+						case 1: echo 'csv';
+							break;
+						case 2: echo '<a href="download.php?type=banners&id=' . $job['id']. '">csv</a>';
+							break;
+					}
+				}
+			echo '</td>';
+
+			echo '<td>';
 				if ($job['libraries']) {
 					switch ($job['status']) {
 						case -1: echo '<a style="color:orange" href="download.php?type=libraries&id=' . $job['id']. '">csv</a>';
@@ -152,7 +168,7 @@ if (count($jobs) > 0) {
 
 </table>
 
-<div><center>This table refreshes automatically every 5 seconds<br/>&nbsp;</center></div>
+<div><center>This table refreshes automatically every 10 seconds<br/>&nbsp;</center></div>
 
 
 <?php
