@@ -33,4 +33,17 @@ if ($fieldsPresent) {
 
 }
 
+if (isSet($_REQUEST['redojob'])) {
+	$dataArray = $database->select('jobs', ['url', 'cookie_consent', 'deeplinks', 'screenshots', 'cookies', 'resources', 'libraries', 'errors'], ['id' => $_REQUEST['redojob']]);
+	$dataArray[0]['status'] = 0;
+
+	$job_id = $database->insert('jobs', $dataArray[0]);
+
+	//var_dump($database->error());
+
+        echo '<div class="alert alert-info">'; 
+        echo '        <strong>Job created!</strong> A new job with ID ' . $job_id .' has been started.';
+        echo '</div>';
+}
+
 ?>

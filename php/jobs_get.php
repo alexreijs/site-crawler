@@ -40,7 +40,8 @@ if (count($jobs) > 0) {
 						break;
 					case 1: echo '<img src="./images/play.png" border="0"/>';
 						break;
-					case 2: echo '<img src="./images/checkmark.png" border="0"/>';
+                                        case 2: echo '<img src="./images/checkmark.png" border="0"/><br/>';
+                                                echo '<a href="index.php?action=jobs&redojob=' . $job['id'] . '" info="Do job again" alt="Do job again"><img src="./images/refresh.png" width="20" height="20" border="0"/></a>';
 						break;
 				}
 			echo '</td>';
