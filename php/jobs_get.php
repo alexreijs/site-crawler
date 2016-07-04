@@ -36,6 +36,7 @@ if (count($jobs) > 0) {
 			echo '<td>';
 				switch ($job['status']) {
 					case -1: echo '<img src="./images/error.gif" border="0"/>';
+                                                 echo '<a href="index.php?action=jobs&redojob=' . $job['id'] . '" info="Do job again" alt="Do job again"><img src="./images/refresh.png" width="20" height="20" border="0"/></a>';
 						break;
 					case 0: echo '<img src="./images/loading.gif" border="0"/>';
 						break;
@@ -47,8 +48,11 @@ if (count($jobs) > 0) {
 				}
 			echo '</td>';
 
+			$date = new DateTime(str_replace(' ', 'T', $job['date']));
+			$date->setTimezone(new DateTimeZone('Europe/Amsterdam'));
+
 			echo '<td>' . $job['id'] . '</td>';
-			echo '<td>' . $job['date'] . '</td>';
+			echo '<td>' . $date->format('Y-m-d H:i:s')  . '</td>';
 
 			echo '<td><div style="overflow:auto; width:275px; overflow-x:hidden; max-height:200px;">';
 

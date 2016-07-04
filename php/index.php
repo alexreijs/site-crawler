@@ -47,6 +47,7 @@ $data = $database->select('jobs', 'id');
             <li role="presentation"<?php if ($_SESSION['action'] == 'home') echo ' class="active"';?>><a href="index.php?action=home">Home</a></li>
             <li role="presentation"<?php if ($_SESSION['action'] == 'crawl') echo ' class="active"';?>><a href="index.php?action=crawl">Crawl</a></li>
             <li role="presentation"<?php if ($_SESSION['action'] == 'jobs') echo ' class="active"';?>><a href="index.php?action=jobs">Jobs</a></li>
+            <li role="presentation"<?php if ($_SESSION['action'] == 'rules') echo ' class="active"';?>><a href="index.php?action=rules">Rules</a></li>
             <li role="presentation"<?php if ($_SESSION['action'] == 'about') echo ' class="active"';?>><a href="index.php?action=about">About</a></li>
           </ul>
         </nav>
@@ -58,9 +59,11 @@ $data = $database->select('jobs', 'id');
 	<?php
 
 	switch($_SESSION['action']) {
-		case 'crawl'	: require_once('crawl.php'); 
+		case 'crawl'	: require_once('crawl.php');
 				break;
 		case 'jobs'	: require_once('jobs.php');
+				break;
+		case 'rules'	: require_once('rules.php');
 				break;
 		default		: require_once('home.php');
 				break;
@@ -76,8 +79,9 @@ $data = $database->select('jobs', 'id');
     </div> <!-- /container -->
 
 
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug
     <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+    -->
   </body>
 </html>
 
