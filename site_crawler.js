@@ -47,8 +47,7 @@ var outputDir = systemArguments.outputdir + '/' + Date.now();
 // Get includes
 var configuration = require(configFile);
 var genericFunctions = require(fs.workingDirectory + '/includes/generic_functions.js');
-var cookieParty = require(fs.workingDirectory + '/includes/cookie_party.js');
-var resourceParty = require(fs.workingDirectory + '/includes/resource_party.js');
+var detectParty = require(fs.workingDirectory + '/includes/detect_party.js');
 var handleURLs = require(fs.workingDirectory + '/includes/handle_urls.js');
 var triggerFunctions = require(fs.workingDirectory + '/includes/trigger_functions.js');
 var pageOpenCallback = require(fs.workingDirectory + '/includes/page_open_callback.js');
@@ -98,7 +97,7 @@ var exportLists = {
 		"resources": {},
 		"list": [],
 		"log": "Tracked [x] resources",
-		"headers": ['Configuration', 'Timestamp', 'LocationProtocol', 'LocationHostname', 'LocationPathname', 'ResourceID', 'ResourceContentType', 'ResourceURL', 'ResourceHost', 'ResourcePath', 'ResourceParty', 'ResourceRequested', 'ResourceCompleted', 'ResourceFailed']
+		"headers": ['Configuration', 'Timestamp', 'LocationProtocol', 'LocationHostname', 'LocationPathname', 'ResourceID', 'ResourceContentType', 'ResourceURL', 'ResourceHost', 'ResourcePath', 'ResourceParty', 'ResourcePartyCategory', 'ResourceRequested', 'ResourceCompleted', 'ResourceFailed']
 	},
 	"screenshots": {
 	 	"list": [],

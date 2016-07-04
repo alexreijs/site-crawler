@@ -4,7 +4,7 @@ class Rule {
     public $type;
     public $priority;
     public $location;
-    public $value;
+    public $name;
     public $company_id;
     public $consent_type_id;
     public $operator;

@@ -7,7 +7,6 @@ include "../models/RuleRepository.php";
 $config = include("../db/config.php");
 
 
-
 $db = new PDO($config["db"], $config["username"], $config["password"]);
 
 
@@ -20,7 +19,7 @@ switch($_SERVER["REQUEST_METHOD"]) {
             "type" => intval($_GET["type"]),
             "priority" => intval($_GET["priority"]),
             "location" => $_GET["location"],
-            "value" => $_GET["value"],
+            "name" => $_GET["name"],
             "company_id" => intval($_GET["company_id"]),
             "consent_type_id" => intval($_GET["consent_type_id"]),
             "operator" => intval($_GET["operator"]),
@@ -32,7 +31,7 @@ switch($_SERVER["REQUEST_METHOD"]) {
             "type" => intval($_POST["type"]),
             "priority" => intval($_POST["priority"]),
             "location" => $_POST["location"],
-            "value" => $_POST["value"],
+            "name" => $_POST["name"],
             "company_id" => intval($_POST["company_id"]),
             "consent_type_id" => intval($_POST["consent_type_id"]),
             "operator" => $_POST["operator"],
@@ -45,7 +44,7 @@ switch($_SERVER["REQUEST_METHOD"]) {
             "type" => intval($_PUT["type"]),
             "priority" => intval($_PUT["priority"]),
             "location" => $_PUT["location"],
-            "value" => $_PUT["value"],
+            "name" => $_PUT["name"],
             "company_id" => intval($_PUT["company_id"]),
             "consent_type_id" => intval($_PUT["consent_type_id"]),
             "operator" => intval($_PUT["operator"]),
@@ -58,6 +57,10 @@ switch($_SERVER["REQUEST_METHOD"]) {
         break;
 }
 echo json_encode($result);
+
+// Also write changes to rules.js file
+if (in_array($_SERVER["REQUEST_METHOD"], ["POST", "PUT", "DELETE"]))
+	require_once( dirname(__FILE__). '/prepare_rules.php' );
 
 
 ?>

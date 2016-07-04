@@ -40,5 +40,7 @@ switch($_SERVER["REQUEST_METHOD"]) {
 }
 echo json_encode($result);
 
+if (in_array($_SERVER["REQUEST_METHOD"], ["POST", "PUT", "DELETE"]))
+	require_once( dirname(__FILE__). '/../rules/prepare_rules.php' );
 
 ?>

@@ -281,10 +281,10 @@
 	controller: database.rulesCookie,
 
         fields: [
-		{ name: "type", title : "Resource type", type: "select", width: "75px", items: [{id : 0, operator : ""}, {id : 1, operator :"Cookie"}, {id : 2, operator : "Script"}], valueField: "id", textField: "operator", validate: function(value, item) {return value != 0; }},
+		{ name: "type", title : "Rule type", type: "select", width: "75px", items: [{id : 0, operator : ""}, {id : 1, operator :"Cookie"}, {id : 2, operator : "Resource"}], valueField: "id", textField: "operator", validate: function(value, item) {return value != 0; }},
 		{ name: "priority", title : "Priority", width: "50px", type: "select", items: priorities, valueField: "id", textField: "priority", validate: function(value, item) {return value != 0;}},
 		{ name: "location", title : "Location RegExp", type: "text"},
-		{ name: "value", title : "Value RegExp", type: "text"},
+		{ name: "name", title : "Name RegExp", type: "text"},
 		{ name: "operator", title : "Operator", type: "select", width: "50px", items: [{id : 0, operator : ""}, {id : 1, operator :" AND"}, {id : 2, operator : "OR"}], valueField: "id", textField: "operator", validate: function(value, item) {return value != 0; }},
 		{ name: "company_id", title : "Company", type: "select", items: companies, valueField: "id", textField: "name", validate: function(value, item) {return value != 0;}},
 		{ name: "consent_type_id", title : "Consent type", width: "75px", type: "select", items: consentTypes, valueField: "id", textField: "type", validate: function(value, item) {return value != 0;}},

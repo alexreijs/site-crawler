@@ -2,7 +2,7 @@ module.exports = {
 	sanomaConsentCategories: [],
 	getAllDeeplinks: true,	
 	getContentDeeplink: false,
-	urls: ['http://www.belegger.nl'],
+	urls: ['http://www.nu.nl'],
 	//urls: ['http://www.duckworld.nl'],	
 	//urls: ['https://www.duckworld.com/veelgestelde-vragen/'],
 	zoomFactor: 1,
