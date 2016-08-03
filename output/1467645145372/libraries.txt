@@ -1,2 +1,0 @@
-Configuration;Timestamp;LocationProtocol;LocationHostname;LocationPathname;LibraryName;LibraryVersion
-test;1467645145388;http;www.nu.nl;"/";JQuery;1.10.2
