@@ -1,0 +1,2 @@
+Configuration;Timestamp;LocationProtocol;LocationHostname;LocationPathname;ScreenshotWidth;ScreenshotHeight;Filename
+
