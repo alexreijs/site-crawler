@@ -42,7 +42,18 @@ var onloadWait = 5000;
 var delimiter = ';';
 var timeoutMS = 10000;
 var urlTimeoutMaxRetries = 2;
-var outputDir = systemArguments.outputdir + '/' + Date.now();
+
+var now = new Date();
+var day = now.getDate().length < 10 ? '0' + now.getDate().toString() : now.getDate();
+var month = now.getMonth().length < 10 ? '0' + (now.getMonth() + 1) : now.getMonth() + 1;
+var year = now.getFullYear();
+
+if (typeof systemArguments.dayformat == 'undefined')
+	var outputDir = systemArguments.outputdir + '/' + Date.now();
+else
+	var outputDir = systemArguments.outputdir + '/' + year + '-' + month + '-' + day;
+
+console.log(outputDir);
 
 // Get includes
 var configuration = require(configFile);
@@ -54,6 +65,13 @@ var triggerFunctions = require(fs.workingDirectory + '/includes/trigger_function
 var pageOpenCallback = require(fs.workingDirectory + '/includes/page_open_callback.js');
 var detectBanners = require(fs.workingDirectory + '/includes/detect_banners.js');
 
+
+
+
+// Check if urls were provided manually
+if (typeof systemArguments.urls != 'undefined') {
+	configuration.urls = systemArguments.urls.split(',');
+}
 
 // Check if URLs were found
 if (typeof configuration.urls == 'undefined' || configuration.urls.length == 0) {
