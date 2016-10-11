@@ -39,10 +39,16 @@
 
         <div class="checkbox">
                 <label>
+                        <input name="banners" type="checkbox" id="inputResources"> Detect banners (including native widgets)
+                </label>
+        </div>
+
+        <div class="checkbox">
+                <label>
                         <input name="libraries" type="checkbox" id="inputLibraries"> Scan javascript libraries
                 </label>
         </div>
-		
+
         <div class="checkbox">
                 <label>
                         <input name="errors" type="checkbox" id="inputErrors"> Track javascript errors

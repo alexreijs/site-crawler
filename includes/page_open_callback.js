@@ -70,16 +70,16 @@ function pageOpenCallback(status) {
 				page.clipRect = clipRect;
 				if (Math.sqrt(clipRect.width * clipRect.height) < 750 && clipRect.width > 0 && clipRect.height > 0) {
 					// Render banner to png
-					if (banner.parent.length == 0 && systemArguments.norendering != 1)
-						page.render(outputDir + '/banners/' + encodeURIComponent(banner.id) + '.png');
-					
-					// Add banner to list of banners
-					exportLists.banners.list.push([
-						systemArguments.config, timestamp, location.protocol, location.host, genericFunctions.encloseQuotes(location.path),
-						genericFunctions.encloseQuotes(banner.id), genericFunctions.encloseQuotes(banner.parent), genericFunctions.encloseQuotes(encodeURIComponent(banner.id)), genericFunctions.encloseQuotes(banner.description),
-						Math.round(clipRect.width), Math.round(clipRect.height), Math.round(clipRect.top), Math.round(clipRect.left)
-					].join(delimiter));
+					//if (banner.parent.length == 0 && systemArguments.norendering != 1)
+					//	page.render(outputDir + '/banners/' + encodeURIComponent(banner.id) + '.png');
 				}
+
+				// Add banner to list of banners
+				exportLists.banners.list.push([
+					systemArguments.config, timestamp, location.protocol, location.host, genericFunctions.encloseQuotes(location.path),
+					genericFunctions.encloseQuotes(banner.id), genericFunctions.encloseQuotes(banner.parent), genericFunctions.encloseQuotes(encodeURIComponent(banner.id)), genericFunctions.encloseQuotes(banner.description),
+					Math.round(clipRect.width), Math.round(clipRect.height), Math.round(clipRect.top), Math.round(clipRect.left)
+				].join(delimiter));
 			}
 		}
 		
@@ -87,10 +87,10 @@ function pageOpenCallback(status) {
 		if (configuration.storeCookies) {
 			for (x in phantom.cookies) {
 				cookie = phantom.cookies[x];
-				cookiePartyInfo = cookieParty.detectParty(location, cookie.domain, cookie.name);
+				cookiePartyInfo = detectParty.detectParty(1, location, cookie.domain, cookie.name);
 				exportLists.cookies.list.push([
 					systemArguments.config, timestamp, location.protocol, location.host, genericFunctions.encloseQuotes(location.path),
-					cookie.domain, genericFunctions.encloseQuotes(cookie.name), genericFunctions.encloseQuotes(cookie.value), cookiePartyInfo.party, cookiePartyInfo['type']
+					cookie.domain, genericFunctions.encloseQuotes(cookie.name), genericFunctions.encloseQuotes(cookie.value), genericFunctions.encloseQuotes(cookiePartyInfo.party), genericFunctions.encloseQuotes(cookiePartyInfo['type'])
 				].join(delimiter));					
 			}
 		}
@@ -101,7 +101,7 @@ function pageOpenCallback(status) {
 				resource = exportLists.resources.resources[id];
 				exportLists.resources.list.push([
 					systemArguments.config, timestamp, location.protocol, location.host, genericFunctions.encloseQuotes(location.path),
-					id, genericFunctions.encloseQuotes(resource.content_type), genericFunctions.encloseQuotes(resource.url), genericFunctions.parseURL(resource.url).host, genericFunctions.encloseQuotes(genericFunctions.parseURL(resource.url).path), resource.party, resource.requested, resource.completed, resource.failed
+					id, genericFunctions.encloseQuotes(resource.content_type), genericFunctions.encloseQuotes(resource.url), genericFunctions.parseURL(resource.url).host, genericFunctions.encloseQuotes(genericFunctions.parseURL(resource.url).path), genericFunctions.encloseQuotes(resource.party.party), genericFunctions.encloseQuotes(resource.party.type), resource.requested, resource.completed, resource.failed
 				].join(delimiter));
 			}
 		}
@@ -144,3 +144,4 @@ function pageOpenCallback(status) {
 		}
 	}
 };
+

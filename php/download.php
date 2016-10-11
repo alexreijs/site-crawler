@@ -24,6 +24,8 @@ switch($_REQUEST['type']) {
 				break;
 	case 'resources':	echo preg_replace('/^\h*\v+/m', '', file_get_contents($outputDir . '/resources.txt'));
 				break;
+	case 'banners':		echo preg_replace('/^\h*\v+/m', '', file_get_contents($outputDir . '/banners.txt'));
+				break;
 	case 'errors':		echo preg_replace('/^\h*\v+/m', '', file_get_contents($outputDir . '/errors.txt'));
 				break;
 }

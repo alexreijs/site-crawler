@@ -20,6 +20,7 @@ if (count($jobs) > 0) {
 		<th>Screenshot</th>
 		<th>Cookies</th>
 		<th>Resources</th>
+		<th>Banners</th>
 		<th>Libraries</th>
 		<th>Errors</th>
 		<th>Log</th>
@@ -35,18 +36,23 @@ if (count($jobs) > 0) {
 			echo '<td>';
 				switch ($job['status']) {
 					case -1: echo '<img src="./images/error.gif" border="0"/>';
+                                                 echo '<a href="index.php?action=jobs&redojob=' . $job['id'] . '" info="Do job again" alt="Do job again"><img src="./images/refresh.png" width="20" height="20" border="0"/></a>';
 						break;
 					case 0: echo '<img src="./images/loading.gif" border="0"/>';
 						break;
 					case 1: echo '<img src="./images/play.png" border="0"/>';
 						break;
-					case 2: echo '<img src="./images/checkmark.png" border="0"/>';
+                                        case 2: echo '<img src="./images/checkmark.png" border="0"/><br/>';
+                                                echo '<a href="index.php?action=jobs&redojob=' . $job['id'] . '" info="Do job again" alt="Do job again"><img src="./images/refresh.png" width="20" height="20" border="0"/></a>';
 						break;
 				}
 			echo '</td>';
 
+			$date = new DateTime(str_replace(' ', 'T', $job['date']));
+			$date->setTimezone(new DateTimeZone('Europe/Amsterdam'));
+
 			echo '<td>' . $job['id'] . '</td>';
-			echo '<td>' . $job['date'] . '</td>';
+			echo '<td>' . $date->format('Y-m-d H:i:s')  . '</td>';
 
 			echo '<td><div style="overflow:auto; width:275px; overflow-x:hidden; max-height:200px;">';
 
@@ -112,6 +118,21 @@ if (count($jobs) > 0) {
 			echo '</td>';
 
 			echo '<td>';
+				if ($job['banners']) {
+					switch ($job['status']) {
+						case -1: echo '<a style="color:orange" href="download.php?type=banners&id=' . $job['id']. '">csv</a>';
+							break;
+						case 0: echo 'csv';
+							break;
+						case 1: echo 'csv';
+							break;
+						case 2: echo '<a href="download.php?type=banners&id=' . $job['id']. '">csv</a>';
+							break;
+					}
+				}
+			echo '</td>';
+
+			echo '<td>';
 				if ($job['libraries']) {
 					switch ($job['status']) {
 						case -1: echo '<a style="color:orange" href="download.php?type=libraries&id=' . $job['id']. '">csv</a>';
@@ -151,7 +172,7 @@ if (count($jobs) > 0) {
 
 </table>
 
-<div><center>This table refreshes automatically every 5 seconds<br/>&nbsp;</center></div>
+<div><center>This table refreshes automatically every 10 seconds<br/>&nbsp;</center></div>
 
 
 <?php
