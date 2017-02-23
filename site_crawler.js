@@ -53,7 +53,7 @@ if (typeof systemArguments.dayformat == 'undefined')
 else
 	var outputDir = systemArguments.outputdir + '/' + year + '-' + month + '-' + day;
 
-console.log(outputDir);
+
 
 // Get includes
 var configuration = require(configFile);

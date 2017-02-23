@@ -93,9 +93,11 @@ function handleUrl(url){
 		// Open current url
 
 		console.log('Openening address: ' + url + (urlTimeoutRetryCount[url] > 0 ? ' (retry count: ' + urlTimeoutRetryCount[url] + ')' : ''));	
-
 		page.open(url, function (status) {	
-	
+
+			// Lock page navigation during loading of page in order to avoid javascript and meta refresh
+			page.navigationLocked = true;
+
 			if (status !== 'success') { 
 				console.log('    Request exitted with status: ' + status);
 				console.log('Retrying URL\n');
@@ -134,6 +136,9 @@ function handleUrl(url){
 }
 
 function nextUrl(){
+
+	// Unlock page navigation
+	page.navigationLocked = false;
 
 	// Delete states data from previous URL
 	delete urlStates[url];
