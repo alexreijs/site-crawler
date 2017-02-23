@@ -91,14 +91,14 @@ function handleUrl(url){
 	}
 	else {
 		// Open current url
-
 		console.log('Openening address: ' + url + (urlTimeoutRetryCount[url] > 0 ? ' (retry count: ' + urlTimeoutRetryCount[url] + ')' : ''));	
-		page.open(url, function (status) {	
 
+		page.open(url, function (status) {
 			// Lock page navigation during loading of page in order to avoid javascript and meta refresh
 			page.navigationLocked = true;
 
 			if (status !== 'success') { 
+				page.navigationLocked = false;
 				console.log('    Request exitted with status: ' + status);
 				console.log('Retrying URL\n');
 				urlTimeoutRetryCount[url] = (typeof urlTimeoutRetryCount[url] == 'undefined' ? 1 : urlTimeoutRetryCount[url] + 1);
