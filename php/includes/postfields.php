@@ -9,10 +9,23 @@ foreach($fieldsToCheck as $index => $field) {
 		$fieldsPresent = false;
 }
 
+function cleanurls($url) {
+    $urls = explode(PHP_EOL, trim($url));
+    foreach ($urls as $key => $val) {
+        if(substr($val,0,4) != 'http') {
+            $urls[$key] = "http://".trim($val);
+        } else {
+            $urls[$key] = trim($val);
+        }
+    }
+
+    return implode(';',$urls);
+}
+
 if ($fieldsPresent) {
 
 	$dataArray = array(
-		'url' => implode(';', explode("<br />", trim(preg_replace('/\s\s+/', '', nl2br($_REQUEST['url']))))),
+		'url' => cleanurls($_REQUEST['url']),
 		'cookie_consent' => (isSet($_REQUEST['cookie_consent']) && $_REQUEST['cookie_consent'] == 'on') ? 1 : 0,
 		'deeplinks' => (isSet($_REQUEST['deeplinks']) && $_REQUEST['deeplinks'] == 'on') ? 1 : 0,
 		'status' => 0,
